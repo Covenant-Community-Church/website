@@ -1,202 +1,36 @@
-# Church Wasif Client
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A modern church website built with Next.js, React 19, TypeScript, and Tailwind CSS. This project provides a beautiful, responsive website for church communities with features for displaying sermons, ministries, contact information, and more.
+## Getting Started
 
-## ✨ Features
+First, run the development server:
 
-- 🎨 **Modern UI Components** - Built with Radix UI primitives and shadcn/ui
-- 🎭 **Smooth Animations** - Powered by Framer Motion and React Spring
-- 🌙 **Dark/Light Mode** - Theme switching with next-themes
-- 📱 **Responsive Design** - Mobile-first approach with Tailwind CSS
-- ⚡ **Performance Optimized** - Next.js 15 with App Router
-- 🎠 **Interactive Carousels** - Embla Carousel for content display
-- 🎯 **TypeScript Support** - Full type safety throughout the application
-
-## 🚀 Tech Stack
-
-- **Framework:** Next.js 15.4.6
-- **Runtime:** React 19.0.0
-- **Language:** TypeScript 5.7.3
-- **Styling:** Tailwind CSS 3.4.1
-- **UI Components:** Radix UI + shadcn/ui
-- **Animations:** Framer Motion + React Spring
-- **Icons:** Lucide React
-- **Font:** Geist
-
-## 📦 Installation
-
-### Prerequisites
-
-- Node.js (version 18 or higher)
-- npm or yarn package manager
-
-### Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd website
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-4. **Open your browser**
-
-   Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
-
-## 🛠️ Available Scripts
-
-- `npm run dev` - Start the development server
-- `npm run build` - Build the application for production
-- `npm run start` - Start the production server
-- `npm run lint` - Run ESLint for code linting
-
-## 📁 Project Structure
-```
-src/
-├── app/                    # Next.js App Router pages
-│   ├── about/             # About page
-│   ├── api/               # API routes
-│   ├── contact/           # Contact page
-│   ├── ministries/        # Ministries page
-│   ├── sermons/           # Sermons page
-│   ├── globals.css        # Global styles
-│   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Home page
-├── components/            # Reusable UI components
-├── content/              # Content management
-├── hooks/                # Custom React hooks
-└── lib/                  # Utility functions and configurations
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## 🎨 UI Components
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-This project uses shadcn/ui components built on top of Radix UI primitives:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- **Navigation:** Dropdown menus, navigation menus
-- **Layout:** Accordions, slots
-- **Feedback:** Toast notifications
-- **Interactive:** Carousels, animations
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## 🔧 Customization
+## Learn More
 
-### Adding New Components
+To learn more about Next.js, take a look at the following resources:
 
-1. Use the shadcn CLI to add new components:
-   ```bash
-   npx shadcn@latest add <component-name>
-   ```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-2. Components will be added to the `src/components/ui` directory
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### Styling
+## Deploy on Vercel
 
-- Global styles are in `src/app/globals.css`
-- Tailwind configuration is in `tailwind.config.ts`
-- Use the `cn()` utility from `src/lib/utils.ts` for conditional classes
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-### Theme Customization
-
-Edit the CSS variables in `globals.css` to customize the color scheme:
-
-```css
-:root {
-  --primary: /* your primary color */;
-  --secondary: /* your secondary color */;
-  /* ... other variables */
-}
-```
-
-## 🤝 Contributing
-
-We welcome contributions to improve the church website! Here's how you can help:
-
-### Getting Started
-
-1. **Fork the repository** on GitHub
-2. **Clone your fork** locally
-3. **Create a feature branch**
-```shell script
-git checkout -b feature/your-feature-name
-```
-
-
-### Development Workflow
-
-1. **Make your changes** following the existing code style
-2. **Test your changes** thoroughly
-3. **Run the linter**
-```shell script
-npm run lint
-```
-
-4. **Commit your changes**
-```shell script
-git commit -m "feat: add your feature description"
-```
-
-5. **Push to your fork**
-```shell script
-git push origin feature/your-feature-name
-```
-
-6. **Create a Pull Request** on GitHub
-
-### Code Style Guidelines
-
-- Use TypeScript for all new files
-- Follow the existing component structure
-- Use Tailwind CSS for styling
-- Write meaningful commit messages
-- Add comments for complex logic
-- Ensure responsive design works on all devices
-
-### Adding New Pages
-
-1. Create a new directory in `src/app/`
-2. Add a `page.tsx` file with your page component
-3. Optionally add a `layout.tsx` for page-specific layouts
-4. Update navigation components if needed
-
-### Adding New Components
-
-1. Create components in `src/components/`
-2. Use TypeScript interfaces for props
-3. Follow the existing naming conventions
-4. Make components reusable and accessible
-
-## 🐛 Issues and Support
-
-If you encounter any issues or have questions:
-
-1. Check the existing issues on GitHub
-2. Create a new issue with detailed information
-3. Include steps to reproduce any bugs
-4. Provide your environment details
-
-## 📄 License
-
-This project is private and proprietary to the church organization.
-
-## 🙏 Acknowledgments
-
-- Built with [Next.js](https://nextjs.org/)
-- UI components by [shadcn/ui](https://ui.shadcn.com/)
-- Icons by [Lucide](https://lucide.dev/)
-- Styling with [Tailwind CSS](https://tailwindcss.com/)
-
----
-
-For more information about specific features or detailed documentation, please refer to the individual component files or contact the development team.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

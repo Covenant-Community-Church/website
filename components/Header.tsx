@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
+import Image from "next/image";
 
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,12 +16,23 @@ export default function Header() {
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex-shrink-0">
-                        <Link href="/">
-                            <h1 className="text-xl font-bold text-navy font-heading">
+                        <Link href="/" className="flex items-center">
+                            <div className="w-10 h-10 flex-shrink-0">
+                                <Image
+                                    src="/covenant-cross-navy.svg"
+                                    alt="Covenant Community Church Cross"
+                                    width={48}
+                                    height={48}
+                                    className="w-full h-full"
+                                />
+                            </div>
+                            <h1 className="text-2xl font-bold text-navy font-heading">
                                 Covenant Community Church
                             </h1>
                         </Link>
                     </div>
+
+
 
                     {/* Desktop Menu */}
                     <div className="hidden md:block">

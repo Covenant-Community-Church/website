@@ -1,4 +1,6 @@
 import PageHeader from "@/components/PageHeader";
+import { Timeline, TimelineItem } from "@/components/Timeline";
+import { MessageCircle, Users, CheckCircle, PauseCircle, User, UserCheck, Building, UsersIcon, Sunrise, Star } from 'lucide-react';
 
 export default function History() {
     return (
@@ -10,75 +12,77 @@ export default function History() {
             />
 
             {/* Timeline Section */}
-            <section className="py-16 bg-white">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="relative">
-                        {/* Timeline line */}
-                        <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-navy/30 hidden md:block"></div>
+            <Timeline>
+                <TimelineItem
+                    date="June 2022"
+                    icon={<MessageCircle className="w-8 h-8 text-navy" />}
+                >
+                    Rome Baptist Church (Chillicothe, IL) and Bethany Community Church (Washington, IL) began praying together about a potential partnership for gospel ministry in Central IL
+                </TimelineItem>
 
-                        <div className="space-y-12">
-                            {/* June 2022 */}
-                            <div className="relative flex items-start">
-                                <div className="flex-shrink-0 w-16 h-16 bg-warm rounded-full flex items-center justify-center relative z-10 md:mr-8">
-                                    <svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                    </svg>
-                                </div>
-                                <div className="flex-grow bg-white border border-warm rounded-2xl p-6 shadow-sm ml-4 md:ml-0">
-                                    <div className="flex items-center mb-2">
-                                        <span className="text-sm font-semibold text-navy bg-warm px-3 py-1 rounded-full font-body">
-                                          June 2022
-                                        </span>
-                                    </div>
-                                    <p className="text-brown leading-relaxed font-body">
-                                        Rome Baptist Church (Chillicothe, IL) and Bethany Community Church (Washington, IL) began praying together about a potential partnership for gospel ministry in Central IL
-                                    </p>
-                                </div>
-                            </div>
+                <TimelineItem
+                    date="August 2022"
+                    icon={<Users className="w-8 h-8 text-navy" />}
+                >
+                    The two congregations began intentionally developing relationships as they pursued the likelihood of partnering together.
+                </TimelineItem>
 
-                            {/* August 2022 */}
-                            <div className="relative flex items-start">
-                                <div className="flex-shrink-0 w-16 h-16 bg-warm rounded-full flex items-center justify-center relative z-10 md:mr-8">
-                                    <svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                    </svg>
-                                </div>
-                                <div className="flex-grow bg-white border border-warm rounded-2xl p-6 shadow-sm ml-4 md:ml-0">
-                                    <div className="flex items-center mb-2">
-                                        <span className="text-sm font-semibold text-navy bg-warm px-3 py-1 rounded-full font-body">
-                                          August 2022
-                                        </span>
-                                    </div>
-                                    <p className="text-brown leading-relaxed font-body">
-                                        The two congregations began intentionally developing relationships as they pursued the likelihood of partnering together.
-                                    </p>
-                                </div>
-                            </div>
+                <TimelineItem
+                    date="December 2022"
+                    icon={<CheckCircle className="w-8 h-8 text-navy" />}
+                >
+                    It became clear that the Lord was leading both congregations to link arms together in formal partnership as they pursued the vision to re-plant RBC.
+                </TimelineItem>
 
-                            {/* December 2022 */}
-                            <div className="relative flex items-start">
-                                <div className="flex-shrink-0 w-16 h-16 bg-warm rounded-full flex items-center justify-center relative z-10 md:mr-8">
-                                    <svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </div>
-                                <div className="flex-grow bg-white border border-warm rounded-2xl p-6 shadow-sm ml-4 md:ml-0">
-                                    <div className="flex items-center mb-2">
-                                        <span className="text-sm font-semibold text-navy bg-warm px-3 py-1 rounded-full font-body">
-                                          December 2022
-                                        </span>
-                                    </div>
-                                    <p className="text-brown leading-relaxed font-body">
-                                        It became clear that the Lord was leading both congregations to link arms together in formal partnership as they pursued the vision to re-plant RBC.
-                                    </p>
-                                </div>
-                            </div>
+                <TimelineItem
+                    date="January 2023"
+                    icon={<PauseCircle className="w-8 h-8 text-navy" />}
+                >
+                    RBC Suspended their ministry and their congregation began worshiping at BCC for a season as plans began to take shape.
+                </TimelineItem>
 
-                            {/* Add more timeline items as needed */}
-                        </div>
-                    </div>
-                </div>
-            </section>
+                <TimelineItem
+                    date="February 2023"
+                    icon={<User className="w-8 h-8 text-navy" />}
+                >
+                    The process to develop elders and deacons began and Jordan Embree was identified as a pastoral candidate for this re-plant.
+                </TimelineItem>
+
+                <TimelineItem
+                    date="April 2023"
+                    icon={<UserCheck className="w-8 h-8 text-navy" />}
+                >
+                    At a family meeting, Jordan Embree was affirmed by the congregation as the church plant pastor. Jordan was brought on staff at BCC as a pastor / elder and served there during the replanting process, developing a leadership team for the new work.
+                </TimelineItem>
+
+                <TimelineItem
+                    date="June 2023"
+                    icon={<Building className="w-8 h-8 text-navy" />}
+                >
+                    The two congregations began small renovations on the RBC property.
+                </TimelineItem>
+
+                <TimelineItem
+                    date="August 2023"
+                    icon={<UsersIcon className="w-8 h-8 text-navy" />}
+                >
+                    A group of 60 individuals and families from BCC committed themselves to joining the existing body at RBC. The leadership team was also identified.
+                </TimelineItem>
+
+                <TimelineItem
+                    date="November 12, 2023"
+                    icon={<Sunrise className="w-8 h-8 text-navy" />}
+                >
+                    <strong>Covenant Community Church launched and had its first Lord&#39;s Day gathering.</strong>
+                </TimelineItem>
+
+                <TimelineItem
+                    date="July 6, 2025"
+                    icon={<Star className="w-8 h-8 text-navy" />}
+                >
+                    <strong>The Lord faithfully brought CCC to the point of autonomy from BCC.</strong> With financial sustainability, a plurality of elders, a church constitution, a season of ministry health, and the blessing of BCC, CCC was constituted as an independent church.
+                </TimelineItem>
+            </Timeline>
         </div>
     );
 }

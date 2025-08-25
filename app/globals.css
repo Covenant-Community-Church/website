@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-white: #FFFFFF;
+  --color-warm: #F6F3EA;
+  --color-navy: #28365D;
+  --color-brown: #362E17;
+  --color-black: #000000;
+
+  --font-heading: var(--font-libre-baskerville);
+  --font-body: var(--font-almarai);
+
+  --radius-2xl: 15px;
+}
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #362E17;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-almarai), sans-serif;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply bg-navy hover:bg-navy/90 text-white px-8 py-3 rounded-2xl font-body font-medium transition-colors;
+}
+
+.btn-secondary {
+  @apply border-2 border-navy text-navy hover:bg-navy hover:text-white px-8 py-3 rounded-2xl font-body font-medium transition-colors;
+}
+
+.btn-tertiary {
+  @apply text-navy hover:text-navy/80 font-body font-medium underline transition-colors;
+}
+
+/* Heading Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-libre-baskerville), serif;
+  font-weight: 700;
+  color: #362E17;
+}
+
+/* Body Text */
+p, div, span, a, li {
+  font-family: var(--font-almarai), sans-serif;
+}

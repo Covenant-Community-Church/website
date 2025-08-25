@@ -95,7 +95,7 @@ export default function Beliefs() {
                                 We hold to the 1689 London Baptist Confession of Faith as our doctrinal standard. This confession represents the biblical and theological convictions that guide our understanding of Scripture and shape our church life.
                             </p>
                             <div className="text-center">
-                                <a href="#" className="btn-secondary">
+                                <a href="/about/beliefs/confession" className="btn-secondary">
                                     Read the Confession
                                 </a>
                             </div>

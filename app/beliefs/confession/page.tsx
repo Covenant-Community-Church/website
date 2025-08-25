@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import confessionData from '@/data/1689-confession.json';
+import PageHeader from "@/components/PageHeader";
 
 export default function ConfessionPage() {
-    const {title, chapters} = confessionData;
+    const {chapters} = confessionData;
     const chapterKeys = Object.keys(chapters);
     const [selectedChapter, setSelectedChapter] = useState<string | null>(null);
 
@@ -13,19 +14,10 @@ export default function ConfessionPage() {
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
-            <section className="bg-gradient-to-b from-warm to-white py-16">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-brown mb-6">
-                            {title}
-                        </h1>
-                        <p className="text-lg text-brown max-w-2xl mx-auto font-body">
-                            The complete text of the Baptist Confession of Faith adopted in 1689,
-                            which serves as a foundational document for our church&#39;s beliefs.
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <PageHeader
+                title="Baptist Confession of Faith of 1689"
+                description="The complete text of the Baptist Confession of Faith adopted in 1689, which serves as a foundational document for our church's beliefs."
+            />
 
             {/* Chapter Selection or Content */}
             <section className="py-16 bg-white">

@@ -1,19 +1,13 @@
+import PageHeader from "@/components/PageHeader";
+
 export default function History() {
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
-            <section className="bg-gradient-to-b from-warm to-white py-16">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-brown mb-6">
-                            Our History
-                        </h1>
-                        <p className="text-lg text-brown max-w-2xl mx-auto font-body">
-                            The story of God&#39;s faithfulness in bringing together two congregations to form Covenant Community Church
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <PageHeader
+                title="Our History"
+                description="The story of God's faithfulness in bringing together two congregations to form Covenant Community Church"
+            />
 
             {/* Timeline Section */}
             <section className="py-16 bg-white">

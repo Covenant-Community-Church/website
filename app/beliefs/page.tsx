@@ -1,19 +1,13 @@
+import PageHeader from "@/components/PageHeader";
+
 export default function Beliefs() {
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
-            <section className="bg-gradient-to-b from-warm to-white py-16">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-brown mb-6">
-                            Our Beliefs
-                        </h1>
-                        <p className="text-lg text-brown max-w-2xl mx-auto font-body">
-                            We are committed to being thoroughly biblical in all aspects of our faith and life, holding fast to historic Christian doctrine.
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <PageHeader
+                title="Our Beliefs"
+                description="We are committed to being thoroughly biblical in all aspects of our faith and life, holding fast to historic Christian doctrine."
+            />
 
             {/* Core Theological Positions */}
             <section className="py-16 bg-white">

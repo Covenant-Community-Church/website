@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Image from "next/image";
+import PageHeader from "@/components/PageHeader";
 
 // Types for YouTube API responses
 interface YouTubePlaylist {
@@ -250,18 +251,10 @@ export default function Sermons() {
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
-            <section className="bg-gradient-to-b from-warm to-white py-16">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-brown mb-6">
-                            Sermons
-                        </h1>
-                        <p className="text-lg text-brown max-w-2xl mx-auto font-body">
-                            Listen to God&apos;s Word faithfully preached through verse-by-verse exposition of Scripture.
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <PageHeader
+                title="Sermons"
+                description="Listen to God's Word faithfully preached through verse-by-verse exposition of Scripture."
+            />
 
             {/* Recent Sermons */}
             <section className="py-16 bg-white">

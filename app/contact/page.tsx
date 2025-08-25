@@ -2,6 +2,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import PageHeader from "@/components/PageHeader";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -29,18 +30,10 @@ export default function Contact() {
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
-            <section className="bg-gradient-to-b from-warm to-white py-16">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-brown mb-6">
-                            Contact Us
-                        </h1>
-                        <p className="text-lg text-brown max-w-2xl mx-auto font-body">
-                            We&#39;d love to hear from you. Whether you have questions about our church, want to visit, or need prayer, don&#39;t hesitate to reach out.
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <PageHeader
+                title="Contact Us"
+                description="We&#39;d love to hear from you. Whether you have questions about our church, want to visit, or need prayer, don&#39;t hesitate to reach out."
+            />
 
             {/* Main Content */}
             <section className="py-16 bg-white">

@@ -1,22 +1,19 @@
+import PageHeader from "@/components/PageHeader";
+
 export default function MeetingTimes() {
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
-            <section className="bg-gradient-to-b from-warm to-white py-16">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-brown mb-6">
-                            Service Times
-                        </h1>
-                        <blockquote className="text-lg md:text-xl text-brown italic leading-relaxed mb-4 font-body">
-                            &#34;And let us consider how to stir up one another to love and good works,
-                            not neglecting to meet together, as is the habit of some, but encouraging one another,
-                            and all the more as you see the Day drawing near.&#34;
-                        </blockquote>
-                        <cite className="text-navy font-medium font-body">Hebrews 10:24-25</cite>
-                    </div>
-                </div>
-            </section>
+            <PageHeader
+                title="Our History"
+                scripture={{
+                    text: "And let us consider how to stir up one another to love and good works, " +
+                          "not neglecting to meet together, as is the habit of some, but encouraging one another, " +
+                          "and all the more as you see the Day drawing near",
+                    reference: "Hebrews 10:24-25"
+                }}
+
+            />
 
             {/* Main Content */}
             <section className="py-16 bg-white">

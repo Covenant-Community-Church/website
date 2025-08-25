@@ -35,7 +35,7 @@ export default function FAQ() {
                                         Is there a dress code?
                                     </h3>
                                     <p className="text-brown leading-relaxed font-body">
-                                        Most of our congregation dresses in a "business casual" style, but please feel free to come in whatever you're comfortable in as long as it is modest.
+                                        Most of our congregation dresses in a &#34;business casual&#34; style, but please feel free to come in whatever you&#39;re comfortable in as long as it is modest.
                                     </p>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@ export default function FAQ() {
                                         What if my children cry or are disruptive during the worship service?
                                     </h3>
                                     <p className="text-brown leading-relaxed font-body">
-                                        We want the whole family to be together during worship on Sunday mornings. If that means a little noise, that's okay! We understand kids are often unpredictable and many of our families are in a similar stage of parenting where we are training our children to sit in the worship service quietly and attentively.
+                                        We want the whole family to be together during worship on Sunday mornings. If that means a little noise, that&#39;s okay! We understand kids are often unpredictable and many of our families are in a similar stage of parenting where we are training our children to sit in the worship service quietly and attentively.
                                     </p>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@ export default function FAQ() {
                                         </p>
                                         <div className="bg-warm border-l-4 border-navy p-4 rounded-r-2xl">
                                             <p className="text-brown italic text-sm leading-relaxed font-body">
-                                                "But the acceptable way of worshipping the true God is instituted by himself, and so limited to his own revealed will, that he may not be worshipped according to the imaginations and devices of men, or any other way not prescribed in the Holy Scripture"
+                                                &#34;But the acceptable way of worshipping the true God is instituted by himself, and so limited to his own revealed will, that he may not be worshipped according to the imaginations and devices of men, or any other way not prescribed in the Holy Scripture&#34;
                                             </p>
                                             <cite className="text-navy font-medium text-sm mt-2 block font-body">
                                                 1689 Confession of Faith (22.1)

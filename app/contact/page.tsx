@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -36,7 +36,7 @@ export default function Contact() {
                             Contact Us
                         </h1>
                         <p className="text-lg text-brown max-w-2xl mx-auto font-body">
-                            We'd love to hear from you. Whether you have questions about our church, want to visit, or need prayer, don't hesitate to reach out.
+                            We&#39;d love to hear from you. Whether you have questions about our church, want to visit, or need prayer, don&#39;t hesitate to reach out.
                         </p>
                     </div>
                 </div>
@@ -276,7 +276,7 @@ export default function Contact() {
             <section className="py-16 bg-warm">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <blockquote className="text-xl md:text-2xl text-brown italic leading-relaxed mb-6 font-body">
-                        "And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, and all the more as you see the Day drawing near."
+                        &#34;And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, and all the more as you see the Day drawing near.&#34;
                     </blockquote>
                     <cite className="text-lg text-navy font-medium font-body">Hebrews 10:24-25</cite>
                 </div>
@@ -290,7 +290,7 @@ export default function Contact() {
                     </h2>
                     <p className="text-xl mb-8 font-body">
                         The best way to get to know our church family is to worship with us.
-                        We'd love to meet you in person!
+                        We&#39;d love to meet you in person!
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a

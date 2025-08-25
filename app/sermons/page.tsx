@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from "next/image";
 
 // Mock data for sermons series - in a real app, this would come from an API or CMS
 const sermonSeries = [
@@ -99,7 +100,7 @@ export default function Sermons() {
                             Sermons
                         </h1>
                         <p className="text-lg text-brown max-w-2xl mx-auto font-body">
-                            Listen to God's Word faithfully preached through verse-by-verse exposition of Scripture.
+                            Listen to God&apos;s Word faithfully preached through verse-by-verse exposition of Scripture.
                         </p>
                     </div>
                 </div>
@@ -118,7 +119,7 @@ export default function Sermons() {
                             <div key={sermon.id} className="bg-white border border-warm rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
                                 {/* YouTube Thumbnail */}
                                 <div className="relative aspect-video bg-warm">
-                                    <img
+                                    <Image
                                         src={`https://img.youtube.com/vi/${sermon.videoId}/maxresdefault.jpg`}
                                         alt={sermon.title}
                                         className="w-full h-full object-cover"
@@ -211,7 +212,7 @@ export default function Sermons() {
                             <div key={series.id} className="bg-white rounded-2xl shadow-sm border border-warm overflow-hidden">
                                 {/* Series Header */}
                                 <div className="relative">
-                                    <img
+                                    <Image
                                         src={series.thumbnail}
                                         alt={series.title}
                                         className="w-full h-48 object-cover"
@@ -276,7 +277,7 @@ export default function Sermons() {
             <section className="py-16 bg-navy text-white">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <blockquote className="text-xl md:text-2xl italic leading-relaxed mb-6 font-body">
-                        "All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work."
+                        &#34;All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work.&#34;
                     </blockquote>
                     <cite className="text-lg font-medium opacity-90 font-body">2 Timothy 3:16-17</cite>
                 </div>
@@ -289,7 +290,7 @@ export default function Sermons() {
                         Join Us for Worship
                     </h2>
                     <p className="text-xl mb-8 font-body">
-                        Experience the preaching of God's Word in person every Sunday morning.
+                        Experience the preaching of God&#39;s Word in person every Sunday morning.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a

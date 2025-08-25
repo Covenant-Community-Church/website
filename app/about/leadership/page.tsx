@@ -3,14 +3,34 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
+// Type definitions
+interface Elder {
+    id: number;
+    name: string;
+    title: string;
+    image: string;
+    bio: string;
+    status: 'elder' | 'candidate';
+}
+
+interface Deacon {
+    id: number;
+    name: string;
+    title: string;
+    image: string;
+    bio: string;
+}
+
+type LeadershipPerson = Elder | Deacon;
+
 // Leadership data with image references
-const elders = [
+const elders: Elder[] = [
     {
         id: 1,
         name: "Jordan Embree",
         title: "Elder",
         image: "/leadership/jordan-embree.png",
-        bio: "Pastor Jordan was on staff at Bethany Community Church in Washington, IL (our sending church) as the church plant pastor prior to being called to help re-plant CCC. Before his time at Bethany, he was a pastor at Christ Community Church in Blaine, WA. He completed his undergraduate work at the University of Northwestern, St. Paul in 2012 and majored in Youth and Family Studies. After undergrad, he stayed at Northwestern for seminary and studied in the dual master’s program (MATS/MDIV) with an emphasis in Biblical Exposition.\n" +
+        bio: "Pastor Jordan was on staff at Bethany Community Church in Washington, IL (our sending church) as the church plant pastor prior to being called to help re-plant CCC. Before his time at Bethany, he was a pastor at Christ Community Church in Blaine, WA. He completed his undergraduate work at the University of Northwestern, St. Paul in 2012 and majored in Youth and Family Studies. After undergrad, he stayed at Northwestern for seminary and studied in the dual master's program (MATS/MDIV) with an emphasis in Biblical Exposition.\n" +
             "\n" + "\n" +
             "Jordan and his wife, Leah, have five boys, Haddon, Knox, RJ (who is with the Lord), Brooks, Kiffin, and Ames. In addition to pastoral work, Jordan enjoys spending time with his boys, date nights with his wife, reading, grilling meat, following Minnesota sports, and any competition.\n" +
             "\n" + "\n" +
@@ -35,7 +55,7 @@ const elders = [
     }
 ];
 
-const deacons = [
+const deacons: Deacon[] = [
     {
         id: 1,
         name: "John Schick",
@@ -53,7 +73,7 @@ const deacons = [
 ];
 
 export default function Leadership() {
-    const [selectedPerson, setSelectedPerson] = useState<any>(null);
+    const [selectedPerson, setSelectedPerson] = useState<LeadershipPerson | null>(null);
 
     return (
         <div className="min-h-screen bg-white">

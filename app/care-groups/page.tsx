@@ -36,14 +36,14 @@ export default function CareGroups() {
 
                     {/* What We Do */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {/* Study God's Word */}
+                        {/* Study God&apos;s Word */}
                         <div className="text-center">
                             <div className="w-16 h-16 bg-warm rounded-full flex items-center justify-center mx-auto mb-6">
                                 <svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                 </svg>
                             </div>
-                            <h3 className="text-xl font-heading font-bold text-brown mb-4">Study God's Word</h3>
+                            <h3 className="text-xl font-heading font-bold text-brown mb-4">Study God&apos;s Word</h3>
                             <p className="text-brown text-sm leading-relaxed font-body">Together we dive deep into Scripture, encouraging one another in understanding and application.</p>
                         </div>
 
@@ -55,7 +55,7 @@ export default function CareGroups() {
                                 </svg>
                             </div>
                             <h3 className="text-xl font-heading font-bold text-brown mb-4">Care for One Another</h3>
-                            <p className="text-brown text-sm leading-relaxed font-body">We meet practical and spiritual needs, bearing one another's burdens in love.</p>
+                            <p className="text-brown text-sm leading-relaxed font-body">We meet practical and spiritual needs, bearing one another&apos;s burdens in love.</p>
                         </div>
 
                         {/* Pray Together */}
@@ -77,7 +77,7 @@ export default function CareGroups() {
                                 </svg>
                             </div>
                             <h3 className="text-xl font-heading font-bold text-brown mb-4">Intentional Discipling</h3>
-                            <p className="text-brown text-sm leading-relaxed font-body">We invest in one another's spiritual growth through encouragement and accountability.</p>
+                            <p className="text-brown text-sm leading-relaxed font-body">We invest in one another&apos;s spiritual growth through encouragement and accountability.</p>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@ export default function CareGroups() {
             <section className="py-16 bg-navy text-white">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <blockquote className="text-xl md:text-2xl italic leading-relaxed mb-6 font-body">
-                        "Love one another with brotherly affection. Outdo one another in showing honor."
+                        &quot;Love one another with brotherly affection. Outdo one another in showing honor.&quot;
                     </blockquote>
                     <cite className="text-lg font-medium opacity-90 font-body">Romans 12:10</cite>
                 </div>
@@ -229,7 +229,7 @@ export default function CareGroups() {
                             Ready to Join a Care Group?
                         </h2>
                         <p className="text-lg text-brown mb-8 font-body">
-                            We'd love to help you find the right Care Group for you and your family
+                            We&apos;d love to help you find the right Care Group for you and your family
                         </p>
                     </div>
 

@@ -9,7 +9,7 @@ export default function History() {
                             Our History
                         </h1>
                         <p className="text-lg text-brown max-w-2xl mx-auto font-body">
-                            The story of God's faithfulness in bringing together two congregations to form Covenant Community Church
+                            The story of God&#39;s faithfulness in bringing together two congregations to form Covenant Community Church
                         </p>
                     </div>
                 </div>

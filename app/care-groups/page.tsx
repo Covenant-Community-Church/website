@@ -23,7 +23,7 @@ export default function CareGroups() {
 
                     <div className="bg-warm rounded-2xl p-8 mb-12 text-center">
                         <blockquote className="text-xl italic text-brown mb-4 font-body">
-                            "Love one another with brotherly affection. Outdo one another in showing honor."
+                            &#34;Love one another with brotherly affection. Outdo one another in showing honor.&#34;
                         </blockquote>
                         <cite className="text-brown font-body">Romans 12:10</cite>
                     </div>

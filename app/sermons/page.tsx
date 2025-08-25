@@ -71,8 +71,8 @@ interface Sermon {
     description: string;
 }
 
-const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
-const CHANNEL_ID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
+const YOUTUBE_API_KEY = process.env.YT_API_KEY;
+const CHANNEL_ID = process.env.CHANNEL_ID;
 
 export default function Sermons() {
     const [selectedFilter, setSelectedFilter] = useState<'all' | 'current' | 'completed'>('all');

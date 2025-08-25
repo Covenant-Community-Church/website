@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from "next/image";
 
 // Types for YouTube API responses
@@ -41,6 +41,13 @@ interface YouTubeVideo {
     };
 }
 
+interface YouTubeThumbnails {
+    maxres?: { url: string };
+    high?: { url: string };
+    medium?: { url: string };
+    default: { url: string };
+}
+
 interface SermonSeries {
     id: string;
     title: string;
@@ -64,8 +71,8 @@ interface Sermon {
     description: string;
 }
 
-const YT_API_KEY = process.env.NEXT_PUBLIC_YT_API_KEY;
-const CHANNEL_ID = process.env.NEXT_PUBLIC_CHANNEL_ID;
+const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+const CHANNEL_ID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
 
 export default function Sermons() {
     const [selectedFilter, setSelectedFilter] = useState<'all' | 'current' | 'completed'>('all');
@@ -74,62 +81,26 @@ export default function Sermons() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    // Fetch playlists from YouTube API
-    const fetchPlaylists = async (): Promise<YouTubePlaylist[]> => {
-        if (!YT_API_KEY || !CHANNEL_ID) {
-            throw new Error('YouTube API key or Channel ID not configured');
-        }
-
-        const response = await fetch(
-            `https://www.googleapis.com/youtube/v3/playlists?part=snippet,contentDetails&channelId=${CHANNEL_ID}&maxResults=50&key=${YT_API_KEY}`
-        );
-
-        if (!response.ok) {
-            throw new Error('Failed to fetch playlists');
-        }
-
-        const data = await response.json();
-        return data.items || [];
-    };
-
-    // Fetch recent videos from a playlist
-    const fetchPlaylistVideos = async (playlistId: string, maxResults = 10): Promise<YouTubeVideo[]> => {
-        if (!YT_API_KEY) {
-            throw new Error('YouTube API key not configured');
-        }
-
-        const response = await fetch(
-            `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${playlistId}&maxResults=${maxResults}&order=date&key=${YT_API_KEY}`
-        );
-
-        if (!response.ok) {
-            throw new Error('Failed to fetch playlist videos');
-        }
-
-        const data = await response.json();
-        return data.items || [];
-    };
-
     // Helper function to get the best quality thumbnail
-    const getBestThumbnail = (thumbnails: any): string => {
+    const getBestThumbnail = useCallback((thumbnails: YouTubeThumbnails): string => {
         return thumbnails.maxres?.url ||
             thumbnails.high?.url ||
             thumbnails.medium?.url ||
             thumbnails.default?.url ||
             'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg';
-    };
+    }, []);
 
     // Helper function to format date
-    const formatDate = (dateString: string): string => {
+    const formatDate = useCallback((dateString: string): string => {
         return new Date(dateString).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
         });
-    };
+    }, []);
 
     // Helper function to determine series status and extract verses
-    const processSeriesData = (playlist: YouTubePlaylist): SermonSeries => {
+    const processSeriesData = useCallback((playlist: YouTubePlaylist): SermonSeries => {
         const title = playlist.snippet.title;
         const description = playlist.snippet.description;
 
@@ -158,10 +129,10 @@ export default function Sermons() {
             verses,
             publishedAt: playlist.snippet.publishedAt
         };
-    };
+    }, [formatDate, getBestThumbnail]);
 
     // Process videos into sermon format
-    const processVideoData = (video: YouTubeVideo, seriesTitle: string): Sermon => {
+    const processVideoData = useCallback((video: YouTubeVideo, seriesTitle: string): Sermon => {
         const title = video.snippet.title;
 
         // Extract passage from title (basic pattern matching)
@@ -177,7 +148,43 @@ export default function Sermons() {
             passage,
             description: video.snippet.description.substring(0, 150) + '...' || 'Listen to this sermon from our series.'
         };
-    };
+    }, [formatDate]);
+
+    // Fetch playlists from YouTube API
+    const fetchPlaylists = useCallback(async (): Promise<YouTubePlaylist[]> => {
+        if (!YOUTUBE_API_KEY || !CHANNEL_ID) {
+            throw new Error('YouTube API key or Channel ID not configured');
+        }
+
+        const response = await fetch(
+            `https://www.googleapis.com/youtube/v3/playlists?part=snippet,contentDetails&channelId=${CHANNEL_ID}&maxResults=50&key=${YOUTUBE_API_KEY}`
+        );
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch playlists');
+        }
+
+        const data = await response.json();
+        return data.items || [];
+    }, []);
+
+    // Fetch recent videos from a playlist
+    const fetchPlaylistVideos = useCallback(async (playlistId: string, maxResults = 10): Promise<YouTubeVideo[]> => {
+        if (!YOUTUBE_API_KEY) {
+            throw new Error('YouTube API key not configured');
+        }
+
+        const response = await fetch(
+            `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${playlistId}&maxResults=${maxResults}&order=date&key=${YOUTUBE_API_KEY}`
+        );
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch playlist videos');
+        }
+
+        const data = await response.json();
+        return data.items || [];
+    }, []);
 
     useEffect(() => {
         const loadData = async () => {
@@ -213,7 +220,7 @@ export default function Sermons() {
         };
 
         loadData();
-    }, []);
+    }, [fetchPlaylists, fetchPlaylistVideos, processSeriesData, processVideoData]);
 
     const filteredSeries = sermonSeries.filter(series => {
         if (selectedFilter === 'all') return true;

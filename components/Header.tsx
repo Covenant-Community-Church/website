@@ -29,7 +29,7 @@ export default function Header() {
                             </div>
 
                             {/* Desktop: Show full text */}
-                            <div className="sm:hidden w-12 h-12 flex-shrink-0">
+                            <div className="hidden md:block w-12 h-12 flex-shrink-0">
                                 <Image
                                     src="/covenant-cross-navy.svg"
                                     alt="Covenant Community Church Cross"
@@ -38,7 +38,7 @@ export default function Header() {
                                     className="w-full h-full"
                                 />
                             </div>
-                            <h1 className="text-3xl font-bold text-navy font-heading">
+                            <h1 className="hidden md:block text-3xl font-bold text-navy font-heading">
                                 Covenant Community
                             </h1>
 

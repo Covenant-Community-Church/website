@@ -71,9 +71,6 @@ interface Sermon {
     description: string;
 }
 
-const YOUTUBE_API_KEY = process.env.YT_API_KEY;
-const CHANNEL_ID = process.env.CHANNEL_ID;
-
 export default function Sermons() {
     const [selectedFilter, setSelectedFilter] = useState<'all' | 'current' | 'completed'>('all');
     const [sermonSeries, setSermonSeries] = useState<SermonSeries[]>([]);
@@ -150,36 +147,26 @@ export default function Sermons() {
         };
     }, [formatDate]);
 
-    // Fetch playlists from YouTube API
+    // Fetch playlists from our API route
     const fetchPlaylists = useCallback(async (): Promise<YouTubePlaylist[]> => {
-        if (!YOUTUBE_API_KEY || !CHANNEL_ID) {
-            throw new Error('YouTube API key or Channel ID not configured');
-        }
-
-        const response = await fetch(
-            `https://www.googleapis.com/youtube/v3/playlists?part=snippet,contentDetails&channelId=${CHANNEL_ID}&maxResults=50&key=${YOUTUBE_API_KEY}`
-        );
+        const response = await fetch('/api/youtube/playlists');
 
         if (!response.ok) {
-            throw new Error('Failed to fetch playlists');
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to fetch playlists');
         }
 
         const data = await response.json();
         return data.items || [];
     }, []);
 
-    // Fetch recent videos from a playlist
+    // Fetch recent videos from a playlist via our API route
     const fetchPlaylistVideos = useCallback(async (playlistId: string, maxResults = 10): Promise<YouTubeVideo[]> => {
-        if (!YOUTUBE_API_KEY) {
-            throw new Error('YouTube API key not configured');
-        }
-
-        const response = await fetch(
-            `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${playlistId}&maxResults=${maxResults}&order=date&key=${YOUTUBE_API_KEY}`
-        );
+        const response = await fetch(`/api/youtube/playlist-videos?playlistId=${playlistId}&maxResults=${maxResults}`);
 
         if (!response.ok) {
-            throw new Error('Failed to fetch playlist videos');
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to fetch playlist videos');
         }
 
         const data = await response.json();

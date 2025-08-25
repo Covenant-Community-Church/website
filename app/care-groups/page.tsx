@@ -274,7 +274,7 @@ export default function CareGroups() {
                             Join a Care Group
                         </a>
                         <a
-                            href="/about/meeting-times"
+                            href="/meeting-times"
                             className="border-2 border-white text-white hover:bg-white hover:text-brown px-8 py-3 rounded-2xl text-lg font-medium transition-colors font-body"
                         >
                             Visit This Sunday

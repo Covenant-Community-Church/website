@@ -1,14 +1,26 @@
 export default function Home() {
   return (
       <div className="min-h-screen">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-b from-warm to-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Hero Section with Background Image */}
+        <section className="relative py-20 min-h-[60vh] flex items-center">
+          {/* Background Image */}
+          <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: "url('/hero-church.jpg')"
+              }}
+          >
+            {/* Overlay for better text readability */}
+            <div className="absolute inset-0 bg-brown/40"></div>
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="text-center">
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-brown mb-6">
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-white mb-6 drop-shadow-lg">
                 Covenant Community Church
               </h1>
-              <p className="text-xl md:text-2xl text-brown mb-8 max-w-4xl mx-auto leading-relaxed font-body">
+              <p className="text-xl md:text-2xl text-white mb-8 max-w-4xl mx-auto leading-relaxed font-body drop-shadow-md">
                 Our purpose is to glorify God<br />
                 as we proclaim Jesus Christ as Lord<br />
                 and prepare His people to worship Him forever.
@@ -16,13 +28,13 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                     href="/about/meeting-times"
-                    className="btn-primary"
+                    className="btn-primary shadow-lg hover:shadow-xl"
                 >
                   Plan Your Visit
                 </a>
                 <a
                     href="/about/beliefs"
-                    className="btn-secondary"
+                    className="bg-white/90 hover:bg-white text-brown px-8 py-3 rounded-2xl font-body font-medium transition-all duration-200 shadow-lg hover:shadow-xl border-2 border-white"
                 >
                   Our Beliefs
                 </a>

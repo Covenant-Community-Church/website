@@ -123,13 +123,13 @@ export default function Contact() {
                                 <h3 className="text-lg font-heading font-semibold text-brown mb-4">Quick Links</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <a
-                                        href="/about/meeting-times"
+                                        href="/meeting-times"
                                         className="text-navy hover:text-brown underline font-body"
                                     >
                                         Service Times
                                     </a>
                                     <a
-                                        href="/about/beliefs"
+                                        href="/beliefs"
                                         className="text-navy hover:text-brown underline font-body"
                                     >
                                         Our Beliefs
@@ -141,7 +141,7 @@ export default function Contact() {
                                         Care Groups
                                     </a>
                                     <a
-                                        href="/about/faq"
+                                        href="/faq"
                                         className="text-navy hover:text-brown underline font-body"
                                     >
                                         FAQs
@@ -294,13 +294,13 @@ export default function Contact() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
-                            href="/about/meeting-times"
+                            href="/meeting-times"
                             className="bg-brown hover:bg-brown/80 text-white px-8 py-3 rounded-lg text-lg font-medium transition-colors font-body"
                         >
                             Plan Your Visit
                         </a>
                         <a
-                            href="/about/faq"
+                            href="/faq"
                             className="border-2 border-white text-white hover:bg-white hover:text-navy px-8 py-3 rounded-lg text-lg font-medium transition-colors font-body"
                         >
                             Common Questions

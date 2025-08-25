@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import confessionData from '@/data/1689-confession.json';
-import { Book } from 'lucide-react';
 
 export default function ConfessionPage() {
     const {title, chapters} = confessionData;

@@ -3,6 +3,8 @@ import {Libre_Baskerville, Almarai} from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import React from "react";
+import {Analytics} from "@vercel/analytics/next"
+import {SpeedInsights} from "@vercel/speed-insights/next"
 
 const libreBaskerville = Libre_Baskerville({
     subsets: ["latin"],
@@ -45,6 +47,8 @@ export default function RootLayout({
                 </div>
             </div>
         </footer>
+        <Analytics/>
+        <SpeedInsights/>
         </body>
         </html>
     );

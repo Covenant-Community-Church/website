@@ -1,94 +1,257 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 
-// Mock data for sermons series - in a real app, this would come from an API or CMS
-const sermonSeries = [
-    {
-        id: 1,
-        title: "Romans",
-        description: "A verse-by-verse exposition through Paul's letter to the Romans, exploring the depths of the Gospel and its implications for Christian living.",
-        playlistId: "PL7f8lbvnQo5HwD5bdkSyvRGoDKztYqUZC", // YouTube playlist ID
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", // Example thumbnail
-        sermonCount: 60,
-        dateRange: "November 2023 - Present",
-        status: "current",
-        verses: "Romans 1-16"
-    },
-    {
-        id: 2,
-        title: "The Gospel According to Mark",
-        description: "Discovering Jesus as the suffering servant through Mark's fast-paced narrative of Christ's earthly ministry.",
-        playlistId: "PLexample2",
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-        sermonCount: 32,
-        dateRange: "March 2022 - December 2022",
-        status: "completed",
-        verses: "Mark 1-16"
-    },
-    {
-        id: 3,
-        title: "The Psalms: Songs of Faith",
-        description: "Exploring selected psalms and learning to worship, lament, and praise God through the poetry of Scripture.",
-        playlistId: "PLexample3",
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-        sermonCount: 18,
-        dateRange: "August 2021 - February 2022",
-        status: "completed",
-        verses: "Selected Psalms"
-    },
-    {
-        id: 4,
-        title: "1 Peter: Hope in Suffering",
-        description: "Finding hope and perseverance in the midst of trials through Peter's first letter to scattered believers.",
-        playlistId: "PLexample4",
-        thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-        sermonCount: 12,
-        dateRange: "January 2021 - July 2021",
-        status: "completed",
-        verses: "1 Peter 1-5"
-    }
-];
+// Types for YouTube API responses
+interface YouTubePlaylist {
+    id: string;
+    snippet: {
+        title: string;
+        description: string;
+        thumbnails: {
+            maxres?: { url: string };
+            high?: { url: string };
+            medium?: { url: string };
+            default: { url: string };
+        };
+        publishedAt: string;
+        channelTitle: string;
+    };
+    contentDetails: {
+        itemCount: number;
+    };
+}
 
-// Individual sermons for the current series (Romans)
-const recentSermons = [
-    {
-        id: 1,
-        title: "The Righteousness of God Revealed",
-        videoId: "dQw4w9WgXcQ", // YouTube video ID
-        date: "January 21, 2025",
-        series: "Romans: The Gospel of God",
-        passage: "Romans 1:16-17",
-        description: "Paul introduces the central theme of Romans: the righteousness of God revealed in the gospel."
-    },
-    {
-        id: 2,
-        title: "The Universal Need for Salvation",
-        videoId: "dQw4w9WgXcQ",
-        date: "January 14, 2025",
-        series: "Romans: The Gospel of God",
-        passage: "Romans 1:18-32",
-        description: "Understanding humanity's fallen condition and desperate need for God's salvation."
-    },
-    {
-        id: 3,
-        title: "God's Impartial Judgment",
-        videoId: "dQw4w9WgXcQ",
-        date: "January 7, 2025",
-        series: "Romans: The Gospel of God",
-        passage: "Romans 2:1-16",
-        description: "Paul demonstrates that all people, both Jews and Gentiles, stand under God's righteous judgment."
-    }
-];
+interface YouTubeVideo {
+    id: string;
+    snippet: {
+        title: string;
+        description: string;
+        publishedAt: string;
+        thumbnails: {
+            maxres?: { url: string };
+            high?: { url: string };
+            medium?: { url: string };
+            default: { url: string };
+        };
+    };
+    contentDetails: {
+        videoId: string;
+    };
+}
+
+interface SermonSeries {
+    id: string;
+    title: string;
+    description: string;
+    playlistId: string;
+    thumbnail: string;
+    sermonCount: number;
+    dateRange: string;
+    status: 'current' | 'completed';
+    verses: string;
+    publishedAt: string;
+}
+
+interface Sermon {
+    id: string;
+    title: string;
+    videoId: string;
+    date: string;
+    series: string;
+    passage: string;
+    description: string;
+}
+
+const YT_API_KEY = process.env.NEXT_PUBLIC_YT_API_KEY;
+const CHANNEL_ID = process.env.NEXT_PUBLIC_CHANNEL_ID;
 
 export default function Sermons() {
     const [selectedFilter, setSelectedFilter] = useState<'all' | 'current' | 'completed'>('all');
+    const [sermonSeries, setSermonSeries] = useState<SermonSeries[]>([]);
+    const [recentSermons, setRecentSermons] = useState<Sermon[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    // Fetch playlists from YouTube API
+    const fetchPlaylists = async (): Promise<YouTubePlaylist[]> => {
+        if (!YT_API_KEY || !CHANNEL_ID) {
+            throw new Error('YouTube API key or Channel ID not configured');
+        }
+
+        const response = await fetch(
+            `https://www.googleapis.com/youtube/v3/playlists?part=snippet,contentDetails&channelId=${CHANNEL_ID}&maxResults=50&key=${YT_API_KEY}`
+        );
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch playlists');
+        }
+
+        const data = await response.json();
+        return data.items || [];
+    };
+
+    // Fetch recent videos from a playlist
+    const fetchPlaylistVideos = async (playlistId: string, maxResults = 10): Promise<YouTubeVideo[]> => {
+        if (!YT_API_KEY) {
+            throw new Error('YouTube API key not configured');
+        }
+
+        const response = await fetch(
+            `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${playlistId}&maxResults=${maxResults}&order=date&key=${YT_API_KEY}`
+        );
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch playlist videos');
+        }
+
+        const data = await response.json();
+        return data.items || [];
+    };
+
+    // Helper function to get the best quality thumbnail
+    const getBestThumbnail = (thumbnails: any): string => {
+        return thumbnails.maxres?.url ||
+            thumbnails.high?.url ||
+            thumbnails.medium?.url ||
+            thumbnails.default?.url ||
+            'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg';
+    };
+
+    // Helper function to format date
+    const formatDate = (dateString: string): string => {
+        return new Date(dateString).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    };
+
+    // Helper function to determine series status and extract verses
+    const processSeriesData = (playlist: YouTubePlaylist): SermonSeries => {
+        const title = playlist.snippet.title;
+        const description = playlist.snippet.description;
+
+        // Extract verses from title (e.g., "Romans 1-16" from "Romans: The Gospel of God")
+        const verseMatch = title.match(/([A-Za-z0-9\s]+)\s*\d+[-:]\d+/);
+        const verses = verseMatch ? verseMatch[0] : title.split(':')[0] || title;
+
+        // Determine status based on recent activity (if published within last 6 months, consider current)
+        const publishedDate = new Date(playlist.snippet.publishedAt);
+        const sixMonthsAgo = new Date();
+        sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+        const status: 'current' | 'completed' = publishedDate > sixMonthsAgo ? 'current' : 'completed';
+
+        // Format date range
+        const dateRange = formatDate(playlist.snippet.publishedAt) + (status === 'current' ? ' - Present' : '');
+
+        return {
+            id: playlist.id,
+            title: title,
+            description: description || 'Expository preaching through Scripture.',
+            playlistId: playlist.id,
+            thumbnail: getBestThumbnail(playlist.snippet.thumbnails),
+            sermonCount: playlist.contentDetails.itemCount,
+            dateRange,
+            status,
+            verses,
+            publishedAt: playlist.snippet.publishedAt
+        };
+    };
+
+    // Process videos into sermon format
+    const processVideoData = (video: YouTubeVideo, seriesTitle: string): Sermon => {
+        const title = video.snippet.title;
+
+        // Extract passage from title (basic pattern matching)
+        const passageMatch = title.match(/([A-Za-z0-9\s]+\s+\d+:\d+[-\d]*)/);
+        const passage = passageMatch ? passageMatch[1] : 'Scripture';
+
+        return {
+            id: video.id,
+            title: title,
+            videoId: video.contentDetails.videoId,
+            date: formatDate(video.snippet.publishedAt),
+            series: seriesTitle,
+            passage,
+            description: video.snippet.description.substring(0, 150) + '...' || 'Listen to this sermon from our series.'
+        };
+    };
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+
+                // Fetch playlists
+                const playlists = await fetchPlaylists();
+
+                // Process playlists into sermon series
+                const processedSeries = playlists
+                    .map(processSeriesData)
+                    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+
+                setSermonSeries(processedSeries);
+
+                // Get recent sermons from the most recent playlist
+                if (processedSeries.length > 0) {
+                    const mostRecentSeries = processedSeries[0];
+                    const videos = await fetchPlaylistVideos(mostRecentSeries.playlistId, 3);
+                    const processedSermons = videos.map(video =>
+                        processVideoData(video, mostRecentSeries.title)
+                    );
+                    setRecentSermons(processedSermons);
+                }
+            } catch (err) {
+                console.error('Error loading sermon data:', err);
+                setError(err instanceof Error ? err.message : 'Failed to load sermon data');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadData();
+    }, []);
 
     const filteredSeries = sermonSeries.filter(series => {
         if (selectedFilter === 'all') return true;
         return series.status === selectedFilter;
     });
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-navy mx-auto mb-4"></div>
+                    <p className="text-brown font-body">Loading sermons...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center max-w-md mx-auto px-4">
+                    <div className="text-red-500 mb-4">
+                        <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.728-.833-2.498 0L4.316 15.5c-.77.833.192 2.5 1.732 2.5z" />
+                        </svg>
+                    </div>
+                    <h2 className="text-xl font-heading font-bold text-brown mb-2">Unable to Load Sermons</h2>
+                    <p className="text-brown font-body mb-4">{error}</p>
+                    <button
+                        onClick={() => window.location.reload()}
+                        className="bg-navy hover:bg-navy/90 text-white px-4 py-2 rounded-2xl font-body"
+                    >
+                        Try Again
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen">
@@ -114,52 +277,59 @@ export default function Sermons() {
                         <p className="text-lg text-brown font-body">Our latest messages from Sunday worship</p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {recentSermons.map((sermon) => (
-                            <div key={sermon.id} className="bg-white border border-warm rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                                {/* YouTube Thumbnail */}
-                                <div className="relative aspect-video bg-warm">
-                                    <Image
-                                        src={`https://img.youtube.com/vi/${sermon.videoId}/maxresdefault.jpg`}
-                                        alt={sermon.title}
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                                        <a
-                                            href={`https://www.youtube.com/watch?v=${sermon.videoId}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="bg-navy hover:bg-navy/90 text-white p-3 rounded-full transition-colors"
-                                        >
-                                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                        </a>
+                    {recentSermons.length > 0 ? (
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {recentSermons.map((sermon) => (
+                                <div key={sermon.id} className="bg-white border border-warm rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                                    {/* YouTube Thumbnail */}
+                                    <div className="relative aspect-video bg-warm">
+                                        <Image
+                                            src={`https://img.youtube.com/vi/${sermon.videoId}/maxresdefault.jpg`}
+                                            alt={sermon.title}
+                                            fill
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                            <a
+                                                href={`https://www.youtube.com/watch?v=${sermon.videoId}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="bg-navy hover:bg-navy/90 text-white p-3 rounded-full transition-colors"
+                                            >
+                                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M8 5v14l11-7z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* Sermon Info */}
-                                <div className="p-6">
-                                    <div className="mb-2">
-                                        <span className="text-sm text-navy font-medium font-body">{sermon.series}</span>
+                                    {/* Sermon Info */}
+                                    <div className="p-6">
+                                        <div className="mb-2">
+                                            <span className="text-sm text-navy font-medium font-body">{sermon.series}</span>
+                                        </div>
+                                        <h3 className="text-xl font-heading font-bold text-brown mb-2">{sermon.title}</h3>
+                                        <div className="flex items-center text-sm text-brown mb-3 font-body">
+                                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                            {sermon.date}
+                                        </div>
+                                        <div className="mb-3">
+                                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-warm text-brown font-body">
+                                              {sermon.passage}
+                                            </span>
+                                        </div>
+                                        <p className="text-brown text-sm leading-relaxed font-body">{sermon.description}</p>
                                     </div>
-                                    <h3 className="text-xl font-heading font-bold text-brown mb-2">{sermon.title}</h3>
-                                    <div className="flex items-center text-sm text-brown mb-3 font-body">
-                                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                        </svg>
-                                        {sermon.date}
-                                    </div>
-                                    <div className="mb-3">
-                                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-warm text-brown font-body">
-                                          {sermon.passage}
-                                        </span>
-                                    </div>
-                                    <p className="text-brown text-sm leading-relaxed font-body">{sermon.description}</p>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center text-brown font-body">
+                            <p>No recent sermons available</p>
+                        </div>
+                    )}
                 </div>
             </section>
 
@@ -211,11 +381,12 @@ export default function Sermons() {
                         {filteredSeries.map((series) => (
                             <div key={series.id} className="bg-white rounded-2xl shadow-sm border border-warm overflow-hidden">
                                 {/* Series Header */}
-                                <div className="relative">
+                                <div className="relative h-48">
                                     <Image
                                         src={series.thumbnail}
                                         alt={series.title}
-                                        className="w-full h-48 object-cover"
+                                        fill
+                                        className="w-full h-full object-cover"
                                     />
                                     <div className="absolute top-4 right-4">
                                         {series.status === 'current' ? (

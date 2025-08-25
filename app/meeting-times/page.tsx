@@ -5,7 +5,7 @@ export default function MeetingTimes() {
         <div className="min-h-screen">
             {/* Hero Section */}
             <PageHeader
-                title="Our History"
+                title="Meeting Times"
                 scripture={{
                     text: "And let us consider how to stir up one another to love and good works, " +
                           "not neglecting to meet together, as is the habit of some, but encouraging one another, " +

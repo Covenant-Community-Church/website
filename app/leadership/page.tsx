@@ -100,17 +100,11 @@ export default function Leadership() {
                 }}
             />
 
-
             {/* Elders Section */}
             <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Header */}
                     <div className="text-center mb-16">
-                        <div className="inline-flex items-center justify-center mb-6">
-                            <div className="w-12 h-0.5 bg-navy mr-4"></div>
-                            <Crown className="w-8 h-8 text-navy" />
-                            <div className="w-12 h-0.5 bg-navy ml-4"></div>
-                        </div>
                         <h2 className="text-4xl font-heading font-bold text-brown mb-6">Elders</h2>
                         <p className="text-lg text-brown max-w-4xl mx-auto font-body leading-relaxed">
                             Our elders are men who meet the biblical qualifications outlined in 1 Timothy 3 and Titus 1.
@@ -160,13 +154,16 @@ export default function Leadership() {
                                             <div className="w-12 h-0.5 bg-navy group-hover:w-16 transition-all duration-300"></div>
                                         </div>
 
-                                        <button
-                                            onClick={() => setSelectedPerson(elder)}
-                                            className="inline-flex items-center text-navy hover:text-brown font-body font-medium transition-colors group"
-                                        >
-                                            Read Biography
-                                            <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
-                                        </button>
+                                        {/* Conditional Biography Button */}
+                                        {elder.bio && elder.bio.trim() !== "" && (
+                                            <button
+                                                onClick={() => setSelectedPerson(elder)}
+                                                className="inline-flex items-center text-navy hover:text-brown font-body font-medium transition-colors group"
+                                            >
+                                                Read Biography
+                                                <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -180,11 +177,6 @@ export default function Leadership() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Header */}
                     <div className="text-center mb-16">
-                        <div className="inline-flex items-center justify-center mb-6">
-                            <div className="w-12 h-0.5 bg-navy mr-4"></div>
-                            <Users className="w-8 h-8 text-navy" />
-                            <div className="w-12 h-0.5 bg-navy ml-4"></div>
-                        </div>
                         <h2 className="text-4xl font-heading font-bold text-brown mb-6">Deacons</h2>
                         <p className="text-lg text-brown max-w-4xl mx-auto font-body leading-relaxed">
                             Our deacons are men of good reputation, full of the Holy Spirit and wisdom, who serve the church
@@ -214,20 +206,25 @@ export default function Leadership() {
                                         <h3 className="text-xl font-heading font-bold text-brown mb-2 group-hover:text-navy transition-colors">
                                             {deacon.name}
                                         </h3>
-                                        <p className="text-navy font-medium mb-3 font-body uppercase tracking-wide text-sm">
+                                        <p className="text-navy font-medium mb-4 font-body uppercase tracking-wide text-sm">
                                             {deacon.title}
                                         </p>
 
-                                        <div className="flex justify-center mb-3">
+                                        {/* Decorative Element */}
+                                        <div className="flex justify-center mb-4">
                                             <div className="w-8 h-0.5 bg-navy group-hover:w-12 transition-all duration-300"></div>
                                         </div>
 
-                                        {/*<button*/}
-                                        {/*    onClick={() => setSelectedPerson(deacon)}*/}
-                                        {/*    className="text-navy hover:text-brown font-body font-medium transition-colors text-sm"*/}
-                                        {/*>*/}
-                                        {/*    Read More*/}
-                                        {/*</button>*/}
+                                        {/* Conditional Biography Button */}
+                                        {deacon.bio && deacon.bio.trim() !== "" && (
+                                            <button
+                                                onClick={() => setSelectedPerson(deacon)}
+                                                className="inline-flex items-center text-navy hover:text-brown font-body font-medium transition-colors group"
+                                            >
+                                                Read Biography
+                                                <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -236,52 +233,47 @@ export default function Leadership() {
                 </div>
             </section>
 
-            {/* Biblical Foundation */}
-            <section className="py-20 bg-navy text-white relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iY3Jvc3MiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMS41IiBmaWxsPSIjRkZGRkZGIiBvcGFjaXR5PSIwLjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjY3Jvc3MpIi8+PC9zdmc+')] opacity-50"></div>
-                <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <div className="inline-flex items-center justify-center mb-8">
-                        <GraduationCap className="w-12 h-12 text-white" />
-                    </div>
-                    <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">Biblical Leadership</h2>
-                    <div className="max-w-4xl mx-auto">
-                        <blockquote className="text-lg md:text-xl italic leading-relaxed mb-6 font-body">
-                            &#34;Pay careful attention to yourselves and to all the flock, in which the Holy Spirit has made you overseers,
-                            to care for the church of God, which he obtained with his own blood.&#34;
-                        </blockquote>
-                        <cite className="text-lg font-medium opacity-90 font-body">Acts 20:28</cite>
-                    </div>
-                </div>
-            </section>
-
-            {/* Bio Modal */}
+            {/* Biography Modal */}
             {selectedPerson && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
                     <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                        <div className="relative">
+                        <div className="sticky top-0 bg-white border-b border-warm px-6 py-4 flex justify-between items-center rounded-t-2xl">
+                            <div>
+                                <h3 className="text-2xl font-heading font-bold text-brown">
+                                    {selectedPerson.name}
+                                </h3>
+                                <p className="text-navy font-body font-medium">
+                                    {selectedPerson.title}
+                                </p>
+                            </div>
                             <button
                                 onClick={() => setSelectedPerson(null)}
-                                className="absolute right-4 top-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors"
+                                className="text-brown hover:text-navy transition-colors"
                             >
-                                <X className="w-6 h-6 text-gray-600" />
+                                <X className="w-6 h-6" />
                             </button>
-
-                            <div className="relative aspect-[4/5] overflow-hidden rounded-t-2xl">
-                                <Image
-                                    src={selectedPerson.image}
-                                    alt={selectedPerson.name}
-                                    fill
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-brown/80 via-transparent to-transparent"></div>
-                                <div className="absolute bottom-6 left-6 text-white">
-                                    <h3 className="text-3xl font-heading font-bold mb-2">{selectedPerson.name}</h3>
-                                    <p className="text-xl font-body opacity-90">{selectedPerson.title}</p>
+                        </div>
+                        <div className="p-6">
+                            <div className="flex flex-col md:flex-row gap-6">
+                                <div className="md:w-1/3">
+                                    <div className="relative aspect-[4/5] rounded-xl overflow-hidden">
+                                        <Image
+                                            src={selectedPerson.image}
+                                            alt={selectedPerson.name}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div className="p-8">
-                                <p className="text-brown font-body text-lg leading-relaxed">{selectedPerson.bio}</p>
+                                <div className="md:w-2/3">
+                                    <div className="prose prose-brown max-w-none">
+                                        {selectedPerson.bio.split('\n\n').map((paragraph, index) => (
+                                            <p key={index} className="text-brown font-body leading-relaxed mb-4">
+                                                {paragraph.trim()}
+                                            </p>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

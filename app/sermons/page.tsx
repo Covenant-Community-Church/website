@@ -57,7 +57,6 @@ interface SermonSeries {
     thumbnail: string;
     sermonCount: number;
     dateRange: string;
-    status: 'current' | 'completed';
     verses: string;
     publishedAt: string;
 }
@@ -73,7 +72,6 @@ interface Sermon {
 }
 
 export default function Sermons() {
-    const [selectedFilter, setSelectedFilter] = useState<'all' | 'current' | 'completed'>('all');
     const [sermonSeries, setSermonSeries] = useState<SermonSeries[]>([]);
     const [recentSermons, setRecentSermons] = useState<Sermon[]>([]);
     const [loading, setLoading] = useState(true);
@@ -97,23 +95,22 @@ export default function Sermons() {
         });
     }, []);
 
-    // Helper function to determine series status and extract verses
-    const processSeriesData = useCallback((playlist: YouTubePlaylist): SermonSeries => {
+    // Helper function to filter out unwanted playlists and extract verses
+    const processSeriesData = useCallback((playlist: YouTubePlaylist): SermonSeries | null => {
         const title = playlist.snippet.title;
         const description = playlist.snippet.description;
+
+        // Filter out the main playlist
+        if (title.toLowerCase().includes('covenant community church')) {
+            return null;
+        }
 
         // Extract verses from title (e.g., "Romans 1-16" from "Romans: The Gospel of God")
         const verseMatch = title.match(/([A-Za-z0-9\s]+)\s*\d+[-:]\d+/);
         const verses = verseMatch ? verseMatch[0] : title.split(':')[0] || title;
 
-        // Determine status based on recent activity (if published within last 6 months, consider current)
-        const publishedDate = new Date(playlist.snippet.publishedAt);
-        const sixMonthsAgo = new Date();
-        sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-        const status: 'current' | 'completed' = publishedDate > sixMonthsAgo ? 'current' : 'completed';
-
         // Format date range
-        const dateRange = formatDate(playlist.snippet.publishedAt) + (status === 'current' ? ' - Present' : '');
+        const dateRange = formatDate(playlist.snippet.publishedAt);
 
         return {
             id: playlist.id,
@@ -123,7 +120,6 @@ export default function Sermons() {
             thumbnail: getBestThumbnail(playlist.snippet.thumbnails),
             sermonCount: playlist.contentDetails.itemCount,
             dateRange,
-            status,
             verses,
             publishedAt: playlist.snippet.publishedAt
         };
@@ -183,9 +179,10 @@ export default function Sermons() {
                 // Fetch playlists
                 const playlists = await fetchPlaylists();
 
-                // Process playlists into sermon series
+                // Process playlists into sermon series, filtering out unwanted ones
                 const processedSeries = playlists
                     .map(processSeriesData)
+                    .filter((series): series is SermonSeries => series !== null)
                     .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 
                 setSermonSeries(processedSeries);
@@ -209,11 +206,6 @@ export default function Sermons() {
 
         loadData();
     }, [fetchPlaylists, fetchPlaylistVideos, processSeriesData, processVideoData]);
-
-    const filteredSeries = sermonSeries.filter(series => {
-        if (selectedFilter === 'all') return true;
-        return series.status === selectedFilter;
-    });
 
     if (loading) {
         return (
@@ -274,7 +266,8 @@ export default function Sermons() {
                                             src={`https://img.youtube.com/vi/${sermon.videoId}/maxresdefault.jpg`}
                                             alt={sermon.title}
                                             fill
-                                            className="w-full h-full object-cover"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                            className="object-cover"
                                         />
                                         <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                                             <a
@@ -292,9 +285,6 @@ export default function Sermons() {
 
                                     {/* Sermon Info */}
                                     <div className="p-6">
-                                        <div className="mb-2">
-                                            <span className="text-sm text-navy font-medium font-body">{sermon.series}</span>
-                                        </div>
                                         <h3 className="text-xl font-heading font-bold text-brown mb-2">{sermon.title}</h3>
                                         <div className="flex items-center text-sm text-brown mb-3 font-body">
                                             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -328,71 +318,24 @@ export default function Sermons() {
                         <p className="text-lg text-brown mb-8 font-body">
                             Explore our verse-by-verse expository preaching through books of the Bible
                         </p>
-
-                        {/* Filter Buttons */}
-                        <div className="flex justify-center space-x-2">
-                            <button
-                                onClick={() => setSelectedFilter('all')}
-                                className={`px-4 py-2 rounded-2xl text-sm font-medium transition-colors font-body ${
-                                    selectedFilter === 'all'
-                                        ? 'bg-navy text-white'
-                                        : 'bg-white text-brown border border-warm hover:bg-white/80'
-                                }`}
-                            >
-                                All Series
-                            </button>
-                            <button
-                                onClick={() => setSelectedFilter('current')}
-                                className={`px-4 py-2 rounded-2xl text-sm font-medium transition-colors font-body ${
-                                    selectedFilter === 'current'
-                                        ? 'bg-navy text-white'
-                                        : 'bg-white text-brown border border-warm hover:bg-white/80'
-                                }`}
-                            >
-                                Current
-                            </button>
-                            <button
-                                onClick={() => setSelectedFilter('completed')}
-                                className={`px-4 py-2 rounded-2xl text-sm font-medium transition-colors font-body ${
-                                    selectedFilter === 'completed'
-                                        ? 'bg-navy text-white'
-                                        : 'bg-white text-brown border border-warm hover:bg-white/80'
-                                }`}
-                            >
-                                Completed
-                            </button>
-                        </div>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8">
-                        {filteredSeries.map((series) => (
+                        {sermonSeries.map((series) => (
                             <div key={series.id} className="bg-white rounded-2xl shadow-sm border border-warm overflow-hidden">
                                 {/* Series Header */}
-                                <div className="relative h-48">
+                                <div className="relative aspect-video">
                                     <Image
                                         src={series.thumbnail}
                                         alt={series.title}
                                         fill
-                                        className="w-full h-full object-cover"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        className="object-cover"
                                     />
-                                    <div className="absolute top-4 right-4">
-                                        {series.status === 'current' ? (
-                                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-navy text-white font-body">
-                                                Current Series
-                                            </span>
-                                        ) : (
-                                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-warm text-brown font-body">
-                                                Completed
-                                            </span>
-                                        )}
-                                    </div>
                                 </div>
 
                                 {/* Series Content */}
                                 <div className="p-6">
-                                    <div className="mb-2">
-                                        <span className="text-sm text-navy font-medium font-body">{series.verses}</span>
-                                    </div>
                                     <h3 className="text-2xl font-heading font-bold text-brown mb-3">{series.title}</h3>
                                     <p className="text-brown leading-relaxed mb-4 font-body">{series.description}</p>
 
@@ -427,42 +370,6 @@ export default function Sermons() {
                                 </div>
                             </div>
                         ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Scripture Section */}
-            <section className="py-16 bg-navy text-white">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <blockquote className="text-xl md:text-2xl italic leading-relaxed mb-6 font-body">
-                        &#34;All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work.&#34;
-                    </blockquote>
-                    <cite className="text-lg font-medium opacity-90 font-body">2 Timothy 3:16-17</cite>
-                </div>
-            </section>
-
-            {/* Call to Action */}
-            <section className="py-16 bg-brown text-white">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-heading font-bold mb-6">
-                        Join Us for Worship
-                    </h2>
-                    <p className="text-xl mb-8 font-body">
-                        Experience the preaching of God&#39;s Word in person every Sunday morning.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a
-                            href="/meeting-times"
-                            className="bg-navy hover:bg-navy/90 text-white px-8 py-3 rounded-2xl text-lg font-medium transition-colors font-body"
-                        >
-                            Service Times
-                        </a>
-                        <a
-                            href="/contact"
-                            className="border-2 border-white text-white hover:bg-white hover:text-brown px-8 py-3 rounded-2xl text-lg font-medium transition-colors font-body"
-                        >
-                            Contact Us
-                        </a>
                     </div>
                 </div>
             </section>

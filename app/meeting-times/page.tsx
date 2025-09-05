@@ -29,7 +29,6 @@ export default function MeetingTimes() {
 
                     {/* Sunday Services */}
                     <div className="mb-20">
-                        <h2 className="text-3xl font-heading font-bold text-brown text-center mb-12">Sunday Services</h2>
                         <div className="grid md:grid-cols-2 gap-8 mb-16">
                             <MeetingCard
                                 icon={
@@ -40,7 +39,7 @@ export default function MeetingTimes() {
                                 title="Sunday School"
                                 day="Sundays"
                                 time="9:00-10:00"
-                                description="Our Sunday school hour is largely focused on discipleship and is one of our main contexts for teaching outside of corporate worship. We presently have one adult Sunday School class that meets in the sanctuary and the current topic is God Is: Understanding the Nature and Character of God. All ages are welcome to join the adult class. There is children's programming for ages 0-18 during the Sunday school hour as well. Children's Sunday School typically includes a bible lesson, singing songs, and catechism memorization at age-appropriate levels."
+                                description="Our Sunday school hour is largely focused on discipleship and is one of our main contexts for teaching outside of corporate worship. We presently have one adult Sunday School class that meets in the sanctuary and the current topic is God Is: Understanding the Nature and Character of God. All ages are welcome to join the adult class. There is children’s programming for ages 0-18 during the Sunday school hour as well. Children’s Sunday School typically includes a bible lesson, singing songs, and catechism memorization at age-appropriate levels."
                             />
 
                             <MeetingCard
@@ -60,7 +59,6 @@ export default function MeetingTimes() {
                                         </div>
                                         <div>
                                             <h4 className="font-semibold text-brown mb-1 font-heading">The Word Preached</h4>
-                                            <p><em>(Currently preaching through Romans)</em></p>
                                             <p>The preaching of the Word is the public proclamation of the good news of the Gospel from the Scriptures. We preach verse by verse through books of the Bible.</p>
                                         </div>
                                         <div>
@@ -79,7 +77,7 @@ export default function MeetingTimes() {
                                 title="Fellowship Meal"
                                 day="Sundays"
                                 time="12:30"
-                                description="Join us for our monthly fellowship meal held on the first Sunday of each month immediately following the worship service. This is a wonderful time for our church family to gather together, share a meal, and enjoy fellowship with one another. Bring a dish to share and come hungry for both food and community!"
+                                description="Join us for our fellowship meal immediately following the worship service. This is a wonderful time for our church family to gather together, share a meal, and enjoy fellowship with one another."
                             />
                             <MeetingCard
                                 icon={
@@ -89,8 +87,8 @@ export default function MeetingTimes() {
                                 }
                                 title="Prayer Meeting"
                                 day="Wednesdays"
-                                time="6:00-7:00"
-                                description="Our evening service provides another opportunity for corporate worship, prayer, and the preaching of God's Word. This service typically has a more intimate setting and includes congregational prayer time."
+                                time="6:00-7:30"
+                                description="Every Sunday after the worship service we have a church-wide fellowship meal. If you come to worship with us, we would love for you to stay and eat lunch afterward. This is a great time for people to get to know each other and strengthen our community with one another."
                             />
                         </div>
                     </div>

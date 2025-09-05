@@ -73,14 +73,14 @@ export default function History() {
                     date="November 12, 2023"
                     icon={<Sunrise className="w-8 h-8 text-navy" />}
                 >
-                    <strong>Covenant Community Church launched and had its first Lord&#39;s Day gathering.</strong>
+                    Covenant Community Church launched and had its first Lord&#39;s Day gathering.
                 </TimelineItem>
 
                 <TimelineItem
                     date="July 6, 2025"
                     icon={<Star className="w-8 h-8 text-navy" />}
                 >
-                    <strong>The Lord faithfully brought CCC to the point of autonomy from BCC.</strong> With financial sustainability, a plurality of elders, a church constitution, a season of ministry health, and the blessing of BCC, CCC was constituted as an independent church.
+                    The Lord faithfully brought CCC to the point of autonomy from BCC. With financial sustainability, a plurality of elders, a church constitution, a season of ministry health, and the blessing of BCC, CCC was constituted as an independent church.
                 </TimelineItem>
             </Timeline>
         </div>

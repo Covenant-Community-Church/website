@@ -62,7 +62,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-heading font-bold text-brown mb-4">Truth</h3>
                 <p className="text-brown leading-relaxed font-body">
-                  We believe that God is the ultimate source and author of truth. Truth flows from God&#39;s very nature and essence. Truth should direct and encompass our thinking, speaking, and &#34;doing&#34; as a church. While creation reveals to us there is a God, it is Scripture alone that is the sufficient and infallible bedrock on which to build our knowledge, faith, and practice.
+                  We believe that God is the ultimate source and author of truth. Truth flows from God’s very nature and essence. Truth should direct and encompass our thinking, speaking, and “doing” as a church. While creation reveals to us there is a God, it is Scripture alone that is the sufficient and infallible bedrock on which to build our knowledge, faith, and practice.
                 </p>
               </div>
 
@@ -75,7 +75,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-heading font-bold text-brown mb-4">Worship</h3>
                 <p className="text-brown leading-relaxed font-body">
-                  We believe that God, in his infinite wisdom and kindness, displays for us in his Word how we are to worship him here and now, as we await worshipping him for all eternity in glory. We gather on the Lord&#39;s Day (Sunday) to read the Word, sing the Word, preach the Word, pray the Word, and see the Word in the ordinances of Baptism and The Lord&#39;s Supper.
+                  We believe that God, in his infinite wisdom and kindness, displays for us in his Word how we are to worship him here and now, as we await worshipping him for all eternity in glory. While there is freedom regarding the different “circumstances” of worship (ie. whether or not to meet in a building or use a microphone), we do not exercise this same freedom regarding the “elements” of worship. We gather on the Lord’s Day (Sunday) to read the Word, sing the Word, preach the Word, pray the Word, and see the Word in the ordinances of Baptism and The Lord’s Supper. Often termed “ordinary means of grace,” these elements are channels by which God dispenses grace to his people.
                 </p>
               </div>
 
@@ -88,7 +88,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-heading font-bold text-brown mb-4">Community</h3>
                 <p className="text-brown leading-relaxed font-body">
-                  We believe that the local church is God&#39;s appointed means for believers to grow in grace and knowledge of our Lord and Savior Jesus Christ. Through faithful participation in the life of the local church, believers are equipped for every good work and prepared for worship in the age to come.
+                  We believe that genuine, authentic community that is driven by the gospel of Jesus Christ is the New Testament model for the Church. Living life in a close-knit family of faith is extremely difficult at times; however, this model is for the betterment of both the individuals in the Church and the on-looking world around us. We strive to value the genuine fellowship of believers, and to commit to investing and participating in the surrounding community, with the hope of drawing others into the fold of God.
                 </p>
               </div>
             </div>

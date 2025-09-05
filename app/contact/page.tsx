@@ -264,43 +264,6 @@ export default function Contact() {
                     </div>
                 </div>
             </section>
-
-            {/* Scripture Section */}
-            <section className="py-16 bg-warm">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <blockquote className="text-xl md:text-2xl text-brown italic leading-relaxed mb-6 font-body">
-                        &#34;And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, and all the more as you see the Day drawing near.&#34;
-                    </blockquote>
-                    <cite className="text-lg text-navy font-medium font-body">Hebrews 10:24-25</cite>
-                </div>
-            </section>
-
-            {/* Visit Us Section */}
-            <section className="py-16 bg-navy text-white">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-heading font-bold mb-6">
-                        Come Visit Us This Sunday
-                    </h2>
-                    <p className="text-xl mb-8 font-body">
-                        The best way to get to know our church family is to worship with us.
-                        We&#39;d love to meet you in person!
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a
-                            href="/meeting-times"
-                            className="bg-brown hover:bg-brown/80 text-white px-8 py-3 rounded-lg text-lg font-medium transition-colors font-body"
-                        >
-                            Plan Your Visit
-                        </a>
-                        <a
-                            href="/faq"
-                            className="border-2 border-white text-white hover:bg-white hover:text-navy px-8 py-3 rounded-lg text-lg font-medium transition-colors font-body"
-                        >
-                            Common Questions
-                        </a>
-                    </div>
-                </div>
-            </section>
         </div>
     );
 }

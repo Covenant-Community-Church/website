@@ -65,7 +65,7 @@ export default function MeetingTimes() {
                                         </div>
                                         <div>
                                             <h4 className="font-semibold text-brown mb-1 font-heading">The Word Prayed</h4>
-                                            <p>As a chief part of our thankfulness, we respond to God's goodness with reverent, biblically informed, Trinitarian, Spirit-filled, Christ-mediated prayer.</p>
+                                            <p>As a chief part of our thankfulness, we respond to God&apos;s goodness with reverent, biblically informed, Trinitarian, Spirit-filled, Christ-mediated prayer.</p>
                                         </div>
                                     </div>
                                 }

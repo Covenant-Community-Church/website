@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Crown, Users, GraduationCap, ArrowRight, X } from 'lucide-react';
+import { ArrowRight, X } from 'lucide-react';
 import PageHeader from "@/components/PageHeader";
 
 interface Elder {

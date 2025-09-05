@@ -1,4 +1,5 @@
 import PageHeader from "@/components/PageHeader";
+import MeetingCard from "@/components/MeetingCard";
 
 export default function MeetingTimes() {
     return (
@@ -8,92 +9,89 @@ export default function MeetingTimes() {
                 title="Meeting Times"
                 scripture={{
                     text: "And let us consider how to stir up one another to love and good works, " +
-                          "not neglecting to meet together, as is the habit of some, but encouraging one another, " +
-                          "and all the more as you see the Day drawing near",
+                        "not neglecting to meet together, as is the habit of some, but encouraging one another, " +
+                        "and all the more as you see the Day drawing near",
                     reference: "Hebrews 10:24-25"
                 }}
-
             />
 
             {/* Main Content */}
             <section className="py-16 bg-white">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                    {/* Sundays Section */}
+                    {/* Location Banner */}
+                    <div className="bg-warm rounded-2xl p-6 mb-16 text-center">
+                        <p className="text-lg text-brown mb-2 font-body">
+                            We meet every Sunday at <strong>5104 E Stevenson Ave in Chillicothe, IL</strong>
+                        </p>
+                        <p className="text-brown font-body">All are welcome to join us.</p>
+                    </div>
+
+                    {/* Sunday Services */}
                     <div className="mb-20">
-                        <h2 className="text-3xl font-heading font-bold text-brown mb-8 text-center">
-                            Sundays (The Lord&apos;s Day)
-                        </h2>
+                        <h2 className="text-3xl font-heading font-bold text-brown text-center mb-12">Sunday Services</h2>
+                        <div className="grid md:grid-cols-2 gap-8 mb-16">
+                            <MeetingCard
+                                icon={
+                                    <svg className="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                    </svg>
+                                }
+                                title="Sunday School"
+                                day="Sundays"
+                                time="9:00-10:00"
+                                description="Our Sunday school hour is largely focused on discipleship and is one of our main contexts for teaching outside of corporate worship. We presently have one adult Sunday School class that meets in the sanctuary and the current topic is God Is: Understanding the Nature and Character of God. All ages are welcome to join the adult class. There is children's programming for ages 0-18 during the Sunday school hour as well. Children's Sunday School typically includes a bible lesson, singing songs, and catechism memorization at age-appropriate levels."
+                            />
 
-                        <div className="bg-warm rounded-2xl p-6 mb-12 text-center">
-                            <p className="text-lg text-brown mb-2 font-body">
-                                We meet every Sunday at <strong>5104 E Stevenson Ave in Chillicothe, IL</strong>
-                            </p>
-                            <p className="text-brown font-body">All are welcome to join us.</p>
-                        </div>
-
-                        {/* Sunday Schedule */}
-                        <div className="grid lg:grid-cols-3 gap-8 mb-12">
-
-                            {/* Sunday School */}
-                            <div className="bg-white border border-warm rounded-2xl p-6 shadow-sm">
-                                <div className="text-center mb-6">
-                                    <div className="w-12 h-12 bg-warm rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <svg className="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                        </svg>
+                            <MeetingCard
+                                icon={
+                                    <svg className="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                                    </svg>
+                                }
+                                title="Worship Service"
+                                day="Sundays"
+                                time="10:30-12:00"
+                                description={
+                                    <div className="space-y-3">
+                                        <div>
+                                            <h4 className="font-semibold text-brown mb-1 font-heading">The Word Read</h4>
+                                            <p>Whether it is God calling us to worship, the confession of our sin, or the assurance of pardon, all that we do on a Sunday is focused on the Word.</p>
+                                        </div>
+                                        <div>
+                                            <h4 className="font-semibold text-brown mb-1 font-heading">The Word Preached</h4>
+                                            <p><em>(Currently preaching through Romans)</em></p>
+                                            <p>The preaching of the Word is the public proclamation of the good news of the Gospel from the Scriptures. We preach verse by verse through books of the Bible.</p>
+                                        </div>
+                                        <div>
+                                            <h4 className="font-semibold text-brown mb-1 font-heading">The Word Prayed</h4>
+                                            <p>As a chief part of our thankfulness, we respond to God's goodness with reverent, biblically informed, Trinitarian, Spirit-filled, Christ-mediated prayer.</p>
+                                        </div>
                                     </div>
-                                    <h3 className="text-xl font-heading font-bold text-brown mb-2">Sunday School</h3>
-                                    <p className="text-2xl font-bold text-navy font-body">9:00-10:00</p>
-                                </div>
-                                <p className="text-brown text-sm leading-relaxed font-body">
-                                    Our Sunday school hour is largely focused on discipleship and is one of our main contexts for teaching outside of corporate worship. We presently have one adult Sunday School class that meets in the sanctuary and the current topic is <em>God Is: Understanding the Nature and Character of God</em>. All ages are welcome to join the adult class. There is children&apos;s programming for ages 0-18 during the Sunday school hour as well. Children&apos;s Sunday School typically includes a bible lesson, singing songs, and catechism memorization at age-appropriate levels.
-                                </p>
-                            </div>
-
-                            {/* Worship Service */}
-                            <div className="bg-white border border-warm rounded-2xl p-6 shadow-sm">
-                                <div className="text-center mb-6">
-                                    <div className="w-12 h-12 bg-warm rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <svg className="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                                        </svg>
-                                    </div>
-                                    <h3 className="text-xl font-heading font-bold text-brown mb-2">Worship Service</h3>
-                                    <p className="text-2xl font-bold text-navy font-body">10:30-12:00</p>
-                                </div>
-                                <div className="space-y-3 text-sm">
-                                    <div>
-                                        <h4 className="font-semibold text-brown mb-1 font-heading">The Word Read</h4>
-                                        <p className="text-brown font-body">Whether it is God calling us to worship, the confession of our sin, or the assurance of pardon, all that we do on a Sunday is focused on the Word.</p>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-brown mb-1 font-heading">The Word Preached</h4>
-                                        <p className="text-brown font-body"><em>(Currently preaching through Romans)</em></p>
-                                        <p className="text-brown font-body">The preaching of the Word is the public proclamation of the good news of the Gospel from the Scriptures. We preach verse by verse through books of the Bible.</p>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-brown mb-1 font-heading">The Word Prayed</h4>
-                                        <p className="text-brown font-body">As a chief part of our thankfulness, we respond to God&apos;s goodness with reverent, biblically informed, Trinitarian, Spirit-filled, Christ-mediated prayer.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Evening Service */}
-                            <div className="bg-white border border-warm rounded-2xl p-6 shadow-sm">
-                                <div className="text-center mb-6">
-                                    <div className="w-12 h-12 bg-warm rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <svg className="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                                        </svg>
-                                    </div>
-                                    <h3 className="text-xl font-heading font-bold text-brown mb-2">Evening Service</h3>
-                                    <p className="text-2xl font-bold text-navy font-body">6:00-7:00</p>
-                                </div>
-                                <p className="text-brown text-sm leading-relaxed font-body">
-                                    Our evening service provides another opportunity for corporate worship, prayer, and the preaching of God&apos;s Word. This service typically has a more intimate setting and includes congregational prayer time.
-                                </p>
-                            </div>
+                                }
+                            />
+                            <MeetingCard
+                                icon={
+                                    <svg className="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                }
+                                title="Fellowship Meal"
+                                day="Sundays"
+                                time="12:30"
+                                description="Join us for our monthly fellowship meal held on the first Sunday of each month immediately following the worship service. This is a wonderful time for our church family to gather together, share a meal, and enjoy fellowship with one another. Bring a dish to share and come hungry for both food and community!"
+                            />
+                            <MeetingCard
+                                icon={
+                                    <svg className="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                                    </svg>
+                                }
+                                title="Prayer Meeting"
+                                day="Wednesdays"
+                                time="6:00-7:00"
+                                description="Our evening service provides another opportunity for corporate worship, prayer, and the preaching of God's Word. This service typically has a more intimate setting and includes congregational prayer time."
+                            />
                         </div>
                     </div>
                 </div>

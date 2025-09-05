@@ -27,13 +27,13 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                    href="/about/meeting-times"
+                    href="/meeting-times"
                     className="btn-primary shadow-lg hover:shadow-xl"
                 >
                   Plan Your Visit
                 </a>
                 <a
-                    href="/about/beliefs"
+                    href="/beliefs"
                     className="bg-white/90 hover:bg-white text-brown px-8 py-3 rounded-2xl font-body font-medium transition-all duration-200 shadow-lg hover:shadow-xl border-2 border-white"
                 >
                   Our Beliefs

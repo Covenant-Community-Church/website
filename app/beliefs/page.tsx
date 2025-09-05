@@ -109,7 +109,7 @@ export default function Beliefs() {
                                 Our church constitution outlines the practical governance, membership requirements, and operational procedures that guide our life together as a local body of believers.
                             </p>
                             <div className="text-center">
-                                <a href="#" className="btn-secondary">
+                                <a href="/church-constitution.pdf" className="btn-secondary">
                                     Read the Constitution
                                 </a>
                             </div>

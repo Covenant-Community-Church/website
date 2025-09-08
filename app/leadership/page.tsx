@@ -33,7 +33,7 @@ const elders: Elder[] = [
         image: "/leadership/jordan-embree.png",
         bio: "Pastor Jordan was on staff at Bethany Community Church in Washington, IL (our sending church) as the church plant pastor prior to being called to help re-plant CCC. Before his time at Bethany, he was a pastor at Christ Community Church in Blaine, WA. He completed his undergraduate work at the University of Northwestern, St. Paul in 2012 and majored in Youth and Family Studies. After undergrad, he stayed at Northwestern for seminary and studied in the dual master's program (MATS/MDIV) with an emphasis in Biblical Exposition.\n" +
             "\n" + "\n" +
-            "Jordan and his wife, Leah, have five boys, Haddon, Knox, RJ (who is with the Lord), Brooks, Kiffin, and Ames. In addition to pastoral work, Jordan enjoys spending time with his boys, date nights with his wife, reading, grilling meat, following Minnesota sports, and any competition.\n" +
+            "Jordan and his wife, Leah, have six boys, Haddon, Knox, RJ (who is with the Lord), Brooks, Kiffin, and Ames. In addition to pastoral work, Jordan enjoys spending time with his boys, date nights with his wife, reading, grilling meat, following Minnesota sports, and any competition.\n" +
             "\n" + "\n" +
             "To contact Jordan, send an email to office@covenantcommunity.org.",
         status: "elder"

@@ -20,6 +20,7 @@ interface Deacon {
     title: string;
     image: string;
     bio: string;
+    status: 'deacon' | 'candidate';
 }
 
 type LeadershipPerson = Elder | Deacon;
@@ -48,7 +49,7 @@ const elders: Elder[] = [
     {
         id: 3,
         name: "Billy Beach",
-        title: "Elder Candidate",
+        title: "Elder",
         image: "/leadership/billy-beach.png",
         bio: "",
         status: "candidate"
@@ -61,28 +62,40 @@ const deacons: Deacon[] = [
         name: "Lloyd Robinson",
         title: "Deacon",
         image: "/leadership/lloyd-robinson.png",
-        bio: ""
+        bio: "",
+        status: "deacon"
     },
     {
         id: 2,
         name: "Paul Grimm",
         title: "Deacon",
         image: "/leadership/paul-grimm.png",
-        bio: ""
+        bio: "",
+        status: "deacon"
     },
     {
         id: 3,
         name: "John Schick",
         title: "Deacon",
         image: "/leadership/john-schick.png",
-        bio: ""
+        bio: "",
+        status: "deacon"
     },
     {
         id: 4,
         name: "Travis Critten",
         title: "Deacon",
         image: "/leadership/travis-critten.png",
-        bio: ""
+        bio: "",
+        status: "deacon"
+    },
+    {
+        id: 5,
+        name: "Matt Lossman",
+        title: "Deacon",
+        image: "/leadership/matt-lossman.png",
+        bio: "",
+        status: "candidate"
     }
 ];
 
@@ -199,6 +212,13 @@ export default function Leadership() {
                                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-brown/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                        {deacon.status === 'candidate' && (
+                                            <div className="absolute top-4 right-4">
+                                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-warm text-brown border-2 border-brown font-body">
+                                                    Candidate
+                                                </span>
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* Content */}

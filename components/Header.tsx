@@ -6,6 +6,7 @@ import Image from "next/image";
 
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isAboutOpen, setIsAboutOpen] = useState(false);
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -48,12 +49,27 @@ export default function Header() {
                     {/* Desktop Menu */}
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-8">
-                            <div className="relative group">
-                                <button className="text-brown hover:text-navy px-3 py-2 text-base font-medium font-body">
+                            <div
+                                className="relative group"
+                                onMouseLeave={() => setIsAboutOpen(false)}
+                            >
+                                <button
+                                    className="text-brown hover:text-navy px-3 py-2 text-base font-medium font-body"
+                                    onClick={() => setIsAboutOpen((v) => !v)}
+                                    aria-haspopup="true"
+                                    aria-expanded={isAboutOpen}
+                                    aria-controls="about-desktop-menu"
+                                >
                                     About Us
                                 </button>
                                 <div
-                                    className="absolute left-0 mt-2 w-52 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 border border-warm">
+                                    id="about-desktop-menu"
+                                    className={`absolute left-0 mt-2 w-52 bg-white rounded-lg shadow-lg z-10 border border-warm transition-all duration-200 ${
+                                        isAboutOpen
+                                            ? 'opacity-100 visible'
+                                            : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible'
+                                    }`}
+                                >
                                     <div className="py-1">
                                         <a href="/meeting-times"
                                            className="block px-4 py-3 text-base text-brown hover:bg-warm font-body">Meeting
@@ -121,32 +137,44 @@ export default function Header() {
                         <div className="px-2 pt-2 pb-3 space-y-1 bg-white rounded-lg mt-2 shadow-lg border border-warm">
                             {/* About Us Section */}
                             <div className="border-b border-warm pb-2 mb-2">
-                                <div className="px-3 py-3 text-base font-medium text-navy font-body">About Us</div>
-                                <a href="/meeting-times"
-                                   className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
-                                   onClick={() => setIsMobileMenuOpen(false)}>
-                                    Meeting Times
-                                </a>
-                                <a href="/leadership"
-                                   className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
-                                   onClick={() => setIsMobileMenuOpen(false)}>
-                                    Our Leadership
-                                </a>
-                                <a href="/history"
-                                   className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
-                                   onClick={() => setIsMobileMenuOpen(false)}>
-                                    Our History
-                                </a>
-                                <a href="/beliefs"
-                                   className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
-                                   onClick={() => setIsMobileMenuOpen(false)}>
-                                    Our Beliefs
-                                </a>
-                                <a href="/faq"
-                                   className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
-                                   onClick={() => setIsMobileMenuOpen(false)}>
-                                    FAQ
-                                </a>
+                                <button
+                                    className="w-full text-left px-3 py-3 text-base font-medium text-navy font-body"
+                                    onClick={() => setIsAboutOpen((v) => !v)}
+                                    aria-haspopup="true"
+                                    aria-expanded={isAboutOpen}
+                                    aria-controls="about-mobile-menu"
+                                >
+                                    About Us
+                                </button>
+                                {isAboutOpen && (
+                                    <div id="about-mobile-menu">
+                                        <a href="/meeting-times"
+                                           className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
+                                           onClick={() => { setIsMobileMenuOpen(false); setIsAboutOpen(false); }}>
+                                            Meeting Times
+                                        </a>
+                                        <a href="/leadership"
+                                           className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
+                                           onClick={() => { setIsMobileMenuOpen(false); setIsAboutOpen(false); }}>
+                                            Our Leadership
+                                        </a>
+                                        <a href="/history"
+                                           className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
+                                           onClick={() => { setIsMobileMenuOpen(false); setIsAboutOpen(false); }}>
+                                            Our History
+                                        </a>
+                                        <a href="/beliefs"
+                                           className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
+                                           onClick={() => { setIsMobileMenuOpen(false); setIsAboutOpen(false); }}>
+                                            Our Beliefs
+                                        </a>
+                                        <a href="/faq"
+                                           className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
+                                           onClick={() => { setIsMobileMenuOpen(false); setIsAboutOpen(false); }}>
+                                            FAQ
+                                        </a>
+                                    </div>
+                                )}
                             </div>
 
                             <a href="/care-groups"

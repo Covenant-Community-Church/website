@@ -69,6 +69,7 @@ interface Sermon {
     series: string;
     passage: string;
     description: string;
+    publishedAt: string;
 }
 
 export default function Sermons() {
@@ -140,7 +141,8 @@ export default function Sermons() {
             date: formatDate(video.snippet.publishedAt),
             series: seriesTitle,
             passage,
-            description: video.snippet.description.substring(0, 150) + '...' || 'Listen to this sermon from our series.'
+            description: video.snippet.description.substring(0, 150) + '...' || 'Listen to this sermon from our series.',
+            publishedAt: video.snippet.publishedAt
         };
     }, [formatDate]);
 
@@ -187,14 +189,43 @@ export default function Sermons() {
 
                 setSermonSeries(processedSeries);
 
-                // Get recent sermons from the most recent playlist
+                // Get recent sermons across playlists: fetch a few videos from each recent series,
+                // merge them, sort by published date, and keep the latest 3 videos overall.
                 if (processedSeries.length > 0) {
-                    const mostRecentSeries = processedSeries[0];
-                    const videos = await fetchPlaylistVideos(mostRecentSeries.playlistId, 3);
-                    const processedSermons = videos.map(video =>
-                        processVideoData(video, mostRecentSeries.title)
+                    // Limit number of playlists to query to avoid excessive API calls
+                    const seriesToQuery = processedSeries.slice(0, 8);
+
+                    // Fetch videos for each series in parallel (grab up to 5 per playlist)
+                    const fetchPromises = seriesToQuery.map(series =>
+                        fetchPlaylistVideos(series.playlistId, 5)
+                            .then((items: YouTubeVideo[]) => ({ seriesTitle: series.title, items }))
+                            .catch(err => {
+                                console.warn('Failed to fetch videos for playlist', series.playlistId, err);
+                                return { seriesTitle: series.title, items: [] as YouTubeVideo[] };
+                            })
                     );
-                    setRecentSermons(processedSermons);
+
+                    const results = await Promise.all(fetchPromises);
+
+                    // Process and flatten all videos
+                    const allSermons: Sermon[] = [];
+                    for (const res of results) {
+                        const { seriesTitle, items } = res as { seriesTitle: string; items: YouTubeVideo[] };
+                        const processed = (items || []).map(video => {
+                            const s = processVideoData(video, seriesTitle);
+                            // keep raw publishedAt for sorting
+                            return { ...s, publishedAt: video.snippet?.publishedAt || '' };
+                        });
+                        allSermons.push(...processed);
+                    }
+
+                    // Sort by publishedAt desc and take top 3
+                    const topThree = allSermons
+                        .filter(s => s.publishedAt)
+                        .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+                        .slice(0, 3);
+
+                    setRecentSermons(topThree);
                 }
             } catch (err) {
                 console.error('Error loading sermon data:', err);

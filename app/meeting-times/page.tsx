@@ -88,7 +88,7 @@ export default function MeetingTimes() {
                                 title="Prayer Meeting"
                                 day="Wednesdays"
                                 time="6:00-7:30"
-                                description="Every Sunday after the worship service we have a church-wide fellowship meal. If you come to worship with us, we would love for you to stay and eat lunch afterward. This is a great time for people to get to know each other and strengthen our community with one another."
+                                description="The first three Sundays of every month, we gather together in prayer. We pray prayers of adoration, confession, thanksgiving, and supplication. This is a great time of beseaching the Lord on eachother's behalf and is vital to our church."
                             />
                         </div>
                     </div>

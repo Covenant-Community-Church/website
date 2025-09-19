@@ -91,7 +91,7 @@ const deacons: Deacon[] = [
     },
     {
         id: 5,
-        name: "Matt Lossman",
+        name: "Matt Lossmann",
         title: "Deacon",
         image: "/leadership/matt-lossman.png",
         bio: "",

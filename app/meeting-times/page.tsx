@@ -88,7 +88,7 @@ export default function MeetingTimes() {
                                 title="Prayer Meeting"
                                 day="Wednesdays"
                                 time="6:00-7:30"
-                                description="The first three Sundays of every month, we gather together in prayer. We pray prayers of adoration, confession, thanksgiving, and supplication. This is a great time of beseaching the Lord on eachother's behalf and is vital to our church."
+                                description="The first three Wednesdays of every month, we gather together in prayer. We pray prayers of adoration, confession, thanksgiving, and supplication. This is a great time of beseaching the Lord on eachother's behalf and is vital to our church."
                             />
                         </div>
                     </div>

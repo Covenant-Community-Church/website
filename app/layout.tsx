@@ -30,11 +30,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <body className={`${libreBaskerville.variable} ${almarai.variable} font-body antialiased`}>
+        <body className={`${libreBaskerville.variable} ${almarai.variable} font-body antialiased min-h-screen flex flex-col`}>
 
         <Header/>
 
-        <main id="main-content">
+        <main id="main-content" className="flex-grow">
             {children}
         </main>
 

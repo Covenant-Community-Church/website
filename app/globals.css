@@ -47,3 +47,40 @@ h1, h2, h3, h4, h5, h6 {
 p, div, span, a, li {
   font-family: var(--font-almarai), sans-serif;
 }
+
+/* Custom Prose Styles for Blog Posts */
+.prose {
+    --tw-prose-body: theme('colors.brown');
+    --tw-prose-headings: theme('colors.brown');
+    --tw-prose-lead: theme('colors.brown');
+    --tw-prose-links: theme('colors.navy');
+    --tw-prose-bold: theme('colors.brown');
+    --tw-prose-counters: theme('colors.navy');
+    --tw-prose-bullets: theme('colors.navy');
+    --tw-prose-hr: theme('colors.warm');
+    --tw-prose-quotes: theme('colors.brown');
+    --tw-prose-quote-borders: theme('colors.navy');
+    --tw-prose-captions: theme('colors.brown');
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+    font-family: theme('fontFamily.heading');
+}
+
+.prose a {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.prose a:hover {
+    text-decoration: underline;
+}
+
+.prose img {
+    border-radius: theme('borderRadius.2xl');
+}

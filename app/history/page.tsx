@@ -1,6 +1,6 @@
 import PageHeader from "@/components/PageHeader";
 import { Timeline, TimelineItem } from "@/components/Timeline";
-import { MessageCircle, Users, CheckCircle, PauseCircle, User, UserCheck, Building, UsersIcon, Sunrise, Star } from 'lucide-react';
+import { MessageCircle, Users, CheckCircle, PauseCircle, User, UserCheck, Building, Sunrise, Star } from 'lucide-react';
 
 export default function History() {
     return (
@@ -64,7 +64,7 @@ export default function History() {
 
                 <TimelineItem
                     date="August 2023"
-                    icon={<UsersIcon className="w-8 h-8 text-navy" />}
+                    icon={<Users className="w-8 h-8 text-navy" />}
                 >
                     A group of 60 individuals and families from BCC committed themselves to joining the existing body at RBC. The leadership team was also identified.
                 </TimelineItem>

@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircleIcon } from 'lucide-react';
 import { SubstackPost } from '@/types/substack';
+import Image from 'next/image';
 
 // Use the base publication URL as required by the new function
 const PUBLICATION_URL = process.env.SUBSTACK_PUBLICATION_URL;
@@ -67,7 +68,7 @@ export default async function BlogPage() {
                             <Card key={post.slug} className="flex flex-col">
                                 <CardHeader>
                                     <div className="aspect-video relative mb-4">
-                                        <img src={post.cover_image.og || '/placeholder-image.png'} alt={post.title} className="w-full h-full object-cover rounded-lg" />
+                                        <Image src={post.cover_image.og || '/placeholder-image.png'} alt={post.title} fill className="object-cover rounded-lg" />
                                     </div>
                                     <CardTitle className="text-xl font-heading font-bold">
                                         <Link href={`/blog/${post.slug}`}>{post.title}</Link>

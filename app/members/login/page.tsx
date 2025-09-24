@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 
@@ -16,7 +16,7 @@ const generateState = (length: number) => {
   return result;
 };
 
-const LoginPage = () => {
+const Login = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -102,5 +102,13 @@ const LoginPage = () => {
     </div>
   );
 };
+
+const LoginPage = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <Login />
+        </Suspense>
+    )
+}
 
 export default LoginPage;

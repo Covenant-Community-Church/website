@@ -17,7 +17,7 @@ export const validateSubstackSlug = (slug: string): string | null => {
 
 
 
-export const getResizedImage = (imageUrl: string, width: number) => {
+export const getResizedImage = (imageUrl: string | null, width: number) => {
     if (!imageUrl) return null;
     const resizableUrl = getResizableSubstackURL(imageUrl)
     if (!resizableUrl) return null;    
@@ -27,14 +27,14 @@ export const getResizedImage = (imageUrl: string, width: number) => {
     return resizableUrl.replace('/fetch/', `/fetch/w_${width},`);
 }
 
-const getResizableSubstackURL = (imageUrl: string) => {
+const getResizableSubstackURL = (imageUrl: string | null) => {
     if (!imageUrl) return null;
     if (imageUrl.includes('substackcdn.com')) return imageUrl;
     if (!imageUrl.includes('substack-post-media.s3.amazonaws.com')) return imageUrl;
     return `https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/${imageUrl}`
 }
 
-export const getOGImageURL = (imageUrl: string) => {
+export const getOGImageURL = (imageUrl: string | null) => {
     const width = 1200;
     const height = 630;
     const fill = 'fill';
@@ -65,7 +65,7 @@ export function getRSSContentWordCount(htmlText: string): number {
 }
 
 
-export function formatCoverImageColorPaletteColor(color: number[]): string | null {
+export function formatCoverImageColorPaletteColor(color: number[] | undefined): string | null {
     if (!color) return null;
     if (!Array.isArray(color) || color.length !== 3) return null;
     const [r, g, b] = color;

@@ -18,13 +18,12 @@ export default function ConfessionPage() {
                 title="Baptist Confession of Faith of 1689"
                 description="The complete text of the Baptist Confession of Faith adopted in 1689, which serves as a foundational document for our church's beliefs."
             />
-
             {/* Chapter Selection or Content */}
             <section className="py-16 bg-white">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     {!selectedChapter ? (
                         /* Chapter Grid */
-                        <div>
+                        (<div>
                             <div className="text-center mb-12">
                                 <h2 className="text-2xl font-heading font-bold text-brown mb-4">
                                     Select a Chapter
@@ -33,7 +32,6 @@ export default function ConfessionPage() {
                                     Choose a chapter to read from the confession
                                 </p>
                             </div>
-
                             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {chapterKeys.map((chapterNum) => {
                                     const chapter = chapters[chapterNum as keyof typeof chapters];
@@ -59,10 +57,10 @@ export default function ConfessionPage() {
                                     );
                                 })}
                             </div>
-                        </div>
+                        </div>)
                     ) : (
                         /* Selected Chapter Content */
-                        <div>
+                        (<div>
                             {/* Back Button */}
                             <div className="mb-8">
                                 <button
@@ -72,7 +70,6 @@ export default function ConfessionPage() {
                                     ← Back to Chapter List
                                 </button>
                             </div>
-
                             {/* Chapter Content */}
                             <div className="bg-white border border-warm rounded-2xl p-8 shadow-sm">
                                 <div className="text-center mb-12">
@@ -100,11 +97,10 @@ export default function ConfessionPage() {
                                     ))}
                                 </div>
                             </div>
-                        </div>
+                        </div>)
                     )}
                 </div>
             </section>
-
             {/* About Section */}
             {!selectedChapter && (
                 <section className="py-16 bg-warm">

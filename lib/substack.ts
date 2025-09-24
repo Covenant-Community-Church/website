@@ -15,6 +15,36 @@ export type Post = {
 };
 
 /**
+ * Represents the possible structures of a parsed XML field value.
+ * It can be a simple string or an object from fast-xml-parser.
+ */
+type XmlFieldValue = string | {
+  '#text'?: string;
+  '@_href'?: string;
+  [key: string]: unknown;
+};
+
+/**
+ * Represents the structure of a raw item parsed from an RSS/Atom feed.
+ */
+type RawPostItem = {
+  title?: XmlFieldValue;
+  link?: XmlFieldValue;
+  guid?: XmlFieldValue;
+  id?: XmlFieldValue;
+  pubDate?: string;
+  published?: string;
+  updated?: string;
+  description?: XmlFieldValue;
+  summary?: XmlFieldValue;
+  'content:encoded'?: XmlFieldValue;
+  content?: XmlFieldValue;
+  enclosure?: {
+    '@_url'?: string;
+  };
+};
+
+/**
  * Decodes common HTML entities in a string.
  * @param str The string to decode.
  * @returns The decoded string.
@@ -100,19 +130,20 @@ async function fetchPostsFromRss(feedUrl: string): Promise<Post[]> {
     const feed = parser.parse(xmlText);
 
     // Handle both RSS (<rss><channel><item>) and Atom (<feed><entry>) formats
-    let itemsRaw: any[] = [];
+    let itemsRaw: RawPostItem[] = [];
     if (feed?.rss?.channel?.item) {
       itemsRaw = Array.isArray(feed.rss.channel.item) ? feed.rss.channel.item : [feed.rss.channel.item];
     } else if (feed?.feed?.entry) {
       itemsRaw = Array.isArray(feed.feed.entry) ? feed.feed.entry : [feed.feed.entry];
     }
 
-    return itemsRaw.map((item: any): Post => {
+    return itemsRaw.map((item: RawPostItem): Post => {
       // Helper to safely extract values which might be strings or objects
-      const extractValue = (field: any): string => {
+      const extractValue = (field: XmlFieldValue | undefined): string => {
           if (typeof field === 'string') return field;
           if (field && typeof field === 'object') {
-              return field['#text'] || field['@_href'] || Object.values(field)[0] || '';
+              const value = field['#text'] ?? field['@_href'] ?? Object.values(field)[0] ?? '';
+              return String(value);
           }
           return '';
       };

@@ -120,10 +120,12 @@ export default function Header() {
                                         }`}
                                 >
                                     <div className="py-1">
-                                        <a href="/blog"
-                                            className="block px-4 py-3 text-base text-brown hover:bg-warm font-body">Blog</a>
-                                        <a href="/sermons"
-                                            className="block px-4 py-3 text-base text-brown hover:bg-warm font-body">Sermons</a>
+                                        <Link href="/sermons"
+                                            className="block px-4 py-3 text-base text-brown hover:bg-warm font-body">Sermons</Link>
+                                        <Link href="/family-worship"
+                                            className="block px-4 py-3 text-base text-brown hover:bg-warm font-body">Family Worship Guides</Link>
+                                        <Link href="/blog"
+                                            className="block px-4 py-3 text-base text-brown hover:bg-warm font-body">Blog</Link>
                                     </div>
                                 </div>
                             </div>

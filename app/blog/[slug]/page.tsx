@@ -25,7 +25,6 @@ export default async function PostPage({ params }: Props) {
   try {
     post = await getPostBySlug(FEED_URL, slug);
   } catch (err) {
-    // eslint-disable-next-line no-console
     console.error('Error fetching Substack post:', err);
     return notFound();
   }
@@ -36,7 +35,6 @@ export default async function PostPage({ params }: Props) {
     <>
       <PageHeader title={post.title} />
       <main className="max-w-4xl mx-auto py-12 px-4">
-        <div className="mt-8 bg-white rounded-2xl shadow-sm border border-warm overflow-hidden">
           <div className="p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="text-sm text-gray-600">{formatDate(post.pubDate)}</div>
@@ -47,7 +45,6 @@ export default async function PostPage({ params }: Props) {
             </div>
             <article className="prose max-w-none" dangerouslySetInnerHTML={{ __html: post.content || post.description || '' }} />
           </div>
-        </div>
       </main>
     </>
   );

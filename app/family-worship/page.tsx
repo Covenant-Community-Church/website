@@ -9,7 +9,7 @@ import { AlertCircleIcon } from 'lucide-react';
 const FEED_URL = `${process.env.SUBSTACK_PUBLICATION_URL}/feed`;
 
 export const metadata = {
-	title: 'Blog | Covenant Community',
+	title: 'Family Worship | Covenant Community',
 };
 
 export default async function BlogPage() {
@@ -27,7 +27,7 @@ export default async function BlogPage() {
 
 	return (
         <>
-            <PageHeader title="Blog" />
+            <PageHeader title="Family Worship Guides" />
             <main className="max-w-6xl mx-auto py-12 px-4">
 
 				{/* Display an error message if the fetch failed */}
@@ -44,9 +44,9 @@ export default async function BlogPage() {
 				{/* Display a message if fetch was successful but returned no posts */}
 				{!errorMessage && posts.length === 0 && (
 					<Alert>
-						<AlertTitle>No Posts Found</AlertTitle>
+						<AlertTitle>No Guides Found</AlertTitle>
 						<AlertDescription>
-							<p>No blog posts were found.</p>
+							<p>No guides were found.</p>
 						</AlertDescription>
 					</Alert>
 				)}
@@ -55,7 +55,7 @@ export default async function BlogPage() {
 				{posts.length > 0 && (
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
 						{posts
-							.filter(post => !post.title.includes('FWFU'))
+							.filter(post => post.title.includes('FWFU'))
 							.map((post) => (
 								<Link key={post.slug} href={`/blog/${post.slug}`}>
 									<Card className="mb-6">

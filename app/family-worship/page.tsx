@@ -2,7 +2,7 @@ import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 // Updated import to use the new Substack library and type
 import { getSubstackPostsViaRSS } from '@/lib/substack';
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircleIcon } from 'lucide-react';
@@ -39,52 +39,51 @@ export default async function BlogPage() {
         errorMessage = 'Could not load blog posts at this time. Please try again later.';
     }
 
+    const familyWorshipPosts = posts.filter((post) => post.title.includes('FWFU'));
+
     return (
         <>
             <PageHeader title="Family Worship Guides" />
-            <main className="max-w-6xl mx-auto py-12 px-4">
-                {/* Display an error message if the fetch failed */}
+            <main className="container mx-auto py-12 px-4">
                 {errorMessage && (
-                    <Alert variant="destructive">
-                        <AlertCircleIcon />
+                    <Alert variant="destructive" className="mb-8">
+                        <AlertCircleIcon className="h-4 w-4" />
                         <AlertTitle>Error</AlertTitle>
-                        <AlertDescription>
-                            <p>{errorMessage}</p>
-                        </AlertDescription>
+                        <AlertDescription>{errorMessage}</AlertDescription>
                     </Alert>
                 )}
 
-                {/* Display a message if fetch was successful but returned no posts */}
-                {!errorMessage && posts.length === 0 && (
+                {!errorMessage && familyWorshipPosts.length === 0 && (
                     <Alert>
+                        <AlertCircleIcon className="h-4 w-4" />
                         <AlertTitle>No Guides Found</AlertTitle>
-                        <AlertDescription>
-                            <p>No guides were found.</p>
-                        </AlertDescription>
+                        <AlertDescription>No family worship guides were found. Please check back later.</AlertDescription>
                     </Alert>
                 )}
 
-                {/* Render posts if available */}
-                {posts.length > 0 && (
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
-                        {posts
-                            .filter((post) => post.title.includes('FWFU'))
-                            .map((post) => (
-                                <Link key={post.slug} href={`/blog/${post.slug}`}>
-                                    <Card className="mb-6">
-                                        <CardHeader>
-                                            <CardTitle>{post.title}</CardTitle>
-                                            {/* The description field is a string and can be used directly */}
-                                            <CardDescription>{post.description}</CardDescription>
-                                        </CardHeader>
-                                        <CardFooter className="pt-0">
-                                            <Button variant="link" className="p-0">
-                                                Read More
-                                            </Button>
-                                        </CardFooter>
-                                    </Card>
-                                </Link>
-                            ))}
+                {familyWorshipPosts.length > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {familyWorshipPosts.map((post) => (
+                            <Card key={post.slug} className="flex flex-col">
+                                <CardHeader>
+                                    <div className="aspect-video relative mb-4">
+                                        <img src={post.cover_image.og || '/placeholder-image.png'} alt={post.title} className="w-full h-full object-cover rounded-lg" />
+                                    </div>
+                                    <CardTitle className="text-xl font-heading font-bold">
+                                        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                                    </CardTitle>
+                                    <CardDescription>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</CardDescription>
+                                </CardHeader>
+                                <CardContent className="flex-grow">
+                                    <p className="text-sm text-gray-600 line-clamp-3">{post.description}</p>
+                                </CardContent>
+                                <CardFooter>
+                                    <Button asChild className="w-full">
+                                        <Link href={`/blog/${post.slug}`}>Read Guide</Link>
+                                    </Button>
+                                </CardFooter>
+                            </Card>
+                        ))}
                     </div>
                 )}
             </main>

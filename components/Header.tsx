@@ -71,33 +71,33 @@ export default function Header() {
                                         }`}
                                 >
                                     <div className="py-1">
-                                        <a href="/meeting-times"
+                                        <Link href="/meeting-times"
                                             className="block px-4 py-3 text-base text-brown hover:bg-warm font-body">Meeting
-                                            Times</a>
-                                        <a href="/leadership"
+                                            Times</Link>
+                                        <Link href="/leadership"
                                             className="block px-4 py-3 text-base text-brown hover:bg-warm font-body">Our
-                                            Leadership</a>
-                                        <a href="/history"
+                                            Leadership</Link>
+                                        <Link href="/history"
                                             className="block px-4 py-3 text-base text-brown hover:bg-warm font-body">Our
-                                            History</a>
-                                        <a href="/beliefs"
+                                            History</Link>
+                                        <Link href="/beliefs"
                                             className="block px-4 py-3 text-base text-brown hover:bg-warm font-body">Our
-                                            Beliefs</a>
-                                        <a href="/faq"
-                                            className="block px-4 py-3 text-base text-brown hover:bg-warm font-body">FAQ</a>
+                                            Beliefs</Link>
+                                        <Link href="/faq"
+                                            className="block px-4 py-3 text-base text-brown hover:bg-warm font-body">FAQ</Link>
                                     </div>
                                 </div>
                             </div>
 
-                            <a href="/care-groups"
+                            <Link href="/care-groups"
                                 className="text-brown hover:text-navy px-3 py-2 text-base font-medium font-body">
                                 Care Groups
-                            </a>
+                            </Link>
 
-                            <a href="/contact"
+                            <Link href="/contact"
                                 className="text-brown hover:text-navy px-3 py-2 text-base font-medium font-body">
                                 Contact Us
-                            </a>
+                            </Link>
 
                             <div
                                 className="relative group"
@@ -174,58 +174,89 @@ export default function Header() {
                                 </button>
                                 {isAboutOpen && (
                                     <div id="about-mobile-menu">
-                                        <a href="/meeting-times"
+                                        <Link href="/meeting-times"
                                             className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
                                             onClick={() => { setIsMobileMenuOpen(false); setIsAboutOpen(false); }}>
                                             Meeting Times
-                                        </a>
-                                        <a href="/leadership"
+                                        </Link>
+                                        <Link href="/leadership"
                                             className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
                                             onClick={() => { setIsMobileMenuOpen(false); setIsAboutOpen(false); }}>
                                             Our Leadership
-                                        </a>
-                                        <a href="/history"
+                                        </Link>
+                                        <Link href="/history"
                                             className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
                                             onClick={() => { setIsMobileMenuOpen(false); setIsAboutOpen(false); }}>
                                             Our History
-                                        </a>
-                                        <a href="/beliefs"
+                                        </Link>
+                                        <Link href="/beliefs"
                                             className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
                                             onClick={() => { setIsMobileMenuOpen(false); setIsAboutOpen(false); }}>
                                             Our Beliefs
-                                        </a>
-                                        <a href="/faq"
+                                        </Link>
+                                        <Link href="/faq"
                                             className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
                                             onClick={() => { setIsMobileMenuOpen(false); setIsAboutOpen(false); }}>
                                             FAQ
-                                        </a>
+                                        </Link>
                                     </div>
                                 )}
                             </div>
 
-                            <a href="/care-groups"
+                            <Link href="/care-groups"
                                 className="block px-3 py-3 text-base text-brown hover:bg-warm font-body rounded-lg"
                                 onClick={() => setIsMobileMenuOpen(false)}>
                                 Care Groups
-                            </a>
+                            </Link>
 
-                            <a href="/contact"
+                            <Link href="/contact"
                                 className="block px-3 py-3 text-base text-brown hover:bg-warm font-body rounded-lg"
                                 onClick={() => setIsMobileMenuOpen(false)}>
                                 Contact Us
-                            </a>
+                            </Link>
 
-                            <a href="/sermons"
+                            <Link href="/sermons"
                                 className="block px-3 py-3 text-base text-brown hover:bg-warm font-body rounded-lg"
                                 onClick={() => setIsMobileMenuOpen(false)}>
                                 Sermons
-                            </a>
+                            </Link>
+                            <div className="border-b border-warm pb-2 mb-2">
+                                <button
+                                    className="w-full text-left px-3 py-3 text-base font-medium text-navy font-body"
+                                    onClick={() => setIsResourcesOpen((v) => !v)}
+                                    aria-haspopup="true"
+                                    aria-expanded={isResourcesOpen}
+                                    aria-controls="about-mobile-menu"
+                                >
+                                    Resources
+                                </button>
+                                {isResourcesOpen && (
+                                    <div id="about-mobile-menu">
+                                        <Link href="/sermons"
+                                            className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
+                                            onClick={() => { setIsMobileMenuOpen(false); setIsResourcesOpen(false); }}>
+                                            Sermons
+                                        </Link>
+                                        <Link href="/family-worship"
+                                            className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
+                                            onClick={() => { setIsMobileMenuOpen(false); setIsResourcesOpen(false); }}>
+                                            Family Worship Guides
+                                        </Link>
+                                        <Link href="/blog"
+                                            className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
+                                            onClick={() => { setIsMobileMenuOpen(false); setIsResourcesOpen(false); }}>
+                                            Blog
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
 
                             <a href="https://covenantcc.churchcenter.com/giving"
                                 className="block bg-navy hover:bg-navy/90 text-white px-3 py-3 rounded-2xl text-base font-medium font-body mx-3 mt-3 text-center"
                                 onClick={() => setIsMobileMenuOpen(false)}>
                                 Give
                             </a>
+
                         </div>
                     </div>
                 )}

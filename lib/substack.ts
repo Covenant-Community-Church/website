@@ -9,6 +9,31 @@ import {
 } from '../utils/helper';
 import { getErrorMessage } from '@/utils/errors';
 
+interface RawApiPost {
+  slug: string;
+  canonical_url: string;
+  title: string;
+  description: string;
+  subtitle: string;
+  truncated_body_text: string;
+  wordcount: number;
+  audio_items: { audio_url: string }[];
+  post_date: string;
+  reactions: { [key: string]: number };
+  audience: string;
+  cover_image: string;
+  coverImagePalette: {
+    Vibrant?: { rgb: number[] };
+    LightVibrant?: { rgb: number[] };
+    DarkVibrant?: { rgb: number[] };
+    Muted?: { rgb: number[] };
+    LightMuted?: { rgb: number[] };
+    DarkMuted?: { rgb: number[] };
+  };
+  publishedBylines: { name: string; photo_url: string }[];
+  body_html: string;
+}
+
 // =================================================================================
 // Substack Unofficial API Functions
 // Primary data source, providing rich metadata like likes, paywall status, etc.
@@ -34,9 +59,9 @@ export async function getSubstackPostsViaAPI(
 		if (!response.ok) {
 			throw new Error(`API fetch failed with status: ${response.status}`);
 		}
-		const data = (await response.json()) as any[];
+		const data = await response.json() as RawApiPost[];
 		return data.map(
-			(post: any): SubstackPost => ({
+			(post: RawApiPost): SubstackPost => ({
 				slug: post.slug,
 				url: post.canonical_url,
 				title: post.title,
@@ -91,7 +116,7 @@ export async function getSubstackPostViaAPI(publicationURL: string, slug: string
 		if (!response.ok) {
 			throw new Error(`API fetch failed for slug "${slug}" with status: ${response.status}`);
 		}
-		const data = (await response.json()) as any;
+		const data = await response.json() as RawApiPost;
 		return {
 			slug: data.slug,
 			url: data.canonical_url,
@@ -117,7 +142,7 @@ export async function getSubstackPostViaAPI(publicationURL: string, slug: string
 				dark_vibrant: formatCoverImageColorPaletteColor(data.coverImagePalette?.DarkVibrant?.rgb),
 				muted: formatCoverImageColorPaletteColor(data.coverImagePalette?.Muted?.rgb),
 				light_muted: formatCoverImageColorPaletteColor(data.coverImagePalette?.LightMuted?.rgb),
-				dark_muted: formatCoverImageColorPaletteColor(data.coverImagePalette?.DarkMuted?.rgb),
+					dark_muted: formatCoverImageColorPaletteColor(data.coverImagePalette?.DarkMuted?.rgb),
 			},
 			author: data.publishedBylines?.[0]?.name || '',
 			author_image: {
@@ -132,7 +157,6 @@ export async function getSubstackPostViaAPI(publicationURL: string, slug: string
 		return null;
 	}
 }
-
 // =================================================================================
 // Substack RSS Feed Functions
 // Fallback data source, providing basic post data with enhanced parsing.

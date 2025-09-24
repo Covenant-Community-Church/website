@@ -44,42 +44,56 @@ p, div, span, a, li {
   font-family: var(--font-almarai), sans-serif;
 }
 
-/* Custom Prose Styles for Blog Posts */
-.prose {
-    --tw-prose-body: theme('colors.brown');
-    --tw-prose-headings: theme('colors.brown');
-    --tw-prose-lead: theme('colors.brown');
-    --tw-prose-links: theme('colors.navy');
-    --tw-prose-bold: theme('colors.brown');
-    --tw-prose-counters: theme('colors.navy');
-    --tw-prose-bullets: theme('colors.navy');
-    --tw-prose-hr: theme('colors.warm');
-    --tw-prose-quotes: theme('colors.brown');
-    --tw-prose-quote-borders: theme('colors.navy');
-    --tw-prose-captions: theme('colors.brown');
+/* Custom styles for blog post content */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    @apply font-heading text-brown mb-4 mt-8;
 }
 
-.prose h1,
-.prose h2,
-.prose h3,
-.prose h4,
-.prose h5,
-.prose h6 {
-    font-family: theme('fontFamily.heading');
+.prose h1 {
+    @apply text-4xl font-bold;
+}
+
+.prose h2 {
+    @apply text-3xl font-bold;
+}
+
+.prose h3 {
+    @apply text-2xl font-bold;
+}
+
+.prose p {
+    @apply font-body text-base leading-relaxed mb-4;
 }
 
 .prose a {
-    font-weight: 600;
-    text-decoration: none;
+    @apply text-navy hover:underline;
 }
 
-.prose a:hover {
-    text-decoration: underline;
+.prose ul {
+    @apply list-disc list-inside my-4;
+}
+
+.prose ol {
+    @apply list-decimal list-inside my-4;
+}
+
+.prose li {
+    @apply mb-2;
+}
+
+.prose blockquote {
+    @apply bg-warm border-l-4 border-navy p-6 italic my-8 text-brown;
 }
 
 .prose img {
-    border-radius: theme('borderRadius.2xl');
+    @apply rounded-2xl my-8;
 }
+
+.prose hr {
+    @apply border-warm my-8;
+}
+
+
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

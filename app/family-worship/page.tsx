@@ -1,79 +1,92 @@
 import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
-import { getAllPosts, type Post } from '@/lib/substack';
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+// Updated import to use the new Substack library and type
+import { getSubstackPostsViaRSS } from '@/lib/substack';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircleIcon } from 'lucide-react';
+import { SubstackPost } from '@/types/substack';
 
-const FEED_URL = `${process.env.SUBSTACK_PUBLICATION_URL}/feed`;
+// Use the base publication URL as required by the new function
+const PUBLICATION_URL = process.env.SUBSTACK_PUBLICATION_URL;
 
 export const metadata = {
-	title: 'Family Worship | Covenant Community',
+    title: 'Family Worship | Covenant Community',
 };
 
 export default async function BlogPage() {
-	let posts: Post[] = [];
-	let errorMessage: string | null = null;
+    // Use the new SubstackPost type
+    let posts: SubstackPost[] = [];
+    let errorMessage: string | null = null;
 
-	try {
-		posts = await getAllPosts(FEED_URL);
-	} catch (err) {
-		// Log the full error to the server console for debugging
-		console.error('Error fetching Substack posts:', err);
-		// Set a user-friendly error message
-		errorMessage = 'Could not load blog posts at this time. Please try again later.';
-	}
+    try {
+        if (!PUBLICATION_URL) {
+            throw new Error('SUBSTACK_PUBLICATION_URL is not defined in environment variables.');
+        }
+        // Call the new function to fetch posts
+        const fetchedPosts = await getSubstackPostsViaRSS(PUBLICATION_URL);
+        if (fetchedPosts) {
+            posts = fetchedPosts;
+        } else {
+            // Handle the case where the function returns null
+            errorMessage = 'Could not load blog posts at this time. Please try again later.';
+        }
+    } catch (err) {
+        // Log the full error to the server console for debugging
+        console.error('Error fetching Substack posts:', err);
+        // Set a user-friendly error message
+        errorMessage = 'Could not load blog posts at this time. Please try again later.';
+    }
 
-	return (
+    const familyWorshipPosts = posts.filter((post) => post.title.includes('FWFU'));
+
+    return (
         <>
             <PageHeader title="Family Worship Guides" />
-            <main className="max-w-6xl mx-auto py-12 px-4">
+            <main className="container mx-auto py-12 px-4">
+                {errorMessage && (
+                    <Alert variant="destructive" className="mb-8">
+                        <AlertCircleIcon className="h-4 w-4" />
+                        <AlertTitle>Error</AlertTitle>
+                        <AlertDescription>{errorMessage}</AlertDescription>
+                    </Alert>
+                )}
 
-				{/* Display an error message if the fetch failed */}
-				{errorMessage && (
-					<Alert variant="destructive">
-						<AlertCircleIcon />
-						<AlertTitle>Error</AlertTitle>
-						<AlertDescription>
-							<p>{errorMessage}</p>
-						</AlertDescription>
-					</Alert>
-				)}
+                {!errorMessage && familyWorshipPosts.length === 0 && (
+                    <Alert>
+                        <AlertCircleIcon className="h-4 w-4" />
+                        <AlertTitle>No Guides Found</AlertTitle>
+                        <AlertDescription>No family worship guides were found. Please check back later.</AlertDescription>
+                    </Alert>
+                )}
 
-				{/* Display a message if fetch was successful but returned no posts */}
-				{!errorMessage && posts.length === 0 && (
-					<Alert>
-						<AlertTitle>No Guides Found</AlertTitle>
-						<AlertDescription>
-							<p>No guides were found.</p>
-						</AlertDescription>
-					</Alert>
-				)}
-
-				{/* Render posts if available */}
-				{posts.length > 0 && (
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
-						{posts
-							.filter(post => post.title.includes('FWFU'))
-							.map((post) => (
-								<Link key={post.slug} href={`/blog/${post.slug}`}>
-									<Card className="mb-6">
-										<CardHeader>
-											<CardTitle>{post.title}</CardTitle>
-											<CardDescription>{post.description}</CardDescription>
-										</CardHeader>
-										<CardFooter className="pt-0">
-											<Button variant="link" className="p-0">
-												Read More
-											</Button>
-										</CardFooter>
-									</Card>
-								</Link>
-							))}
-					</div>
-				)}
-			</main>
+                {familyWorshipPosts.length > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {familyWorshipPosts.map((post) => (
+                            <Card key={post.slug} className="flex flex-col">
+                                <CardHeader>
+                                    <div className="aspect-video relative mb-4">
+                                        <img src={post.cover_image.og || '/placeholder-image.png'} alt={post.title} className="w-full h-full object-cover rounded-lg" />
+                                    </div>
+                                    <CardTitle className="text-xl font-heading font-bold">
+                                        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                                    </CardTitle>
+                                    <CardDescription>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</CardDescription>
+                                </CardHeader>
+                                <CardContent className="flex-grow">
+                                    <p className="text-sm text-gray-600 line-clamp-3">{post.description}</p>
+                                </CardContent>
+                                <CardFooter>
+                                    <Button asChild className="w-full">
+                                        <Link href={`/blog/${post.slug}`}>Read Guide</Link>
+                                    </Button>
+                                </CardFooter>
+                            </Card>
+                        ))}
+                    </div>
+                )}
+            </main>
         </>
     );
 }

@@ -34,7 +34,7 @@ function cleanPostHTML(htmlContent: string | null | undefined): string {
   // Remove all script tags
   cleaned = cleaned.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '');
   // Remove pencraft divs
-  cleaned = cleaned.replace(/<div class="pencraft.*?">.*?<\/div>/g, '');
+  cleaned = cleaned.replace(/<div class="pencraft.*?">.*<\/div>/g, '');
   return cleaned;
 }
 

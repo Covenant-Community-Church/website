@@ -1,58 +1,37 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useMemo } from 'react';
+import dynamic from 'next/dynamic';
+import PageHeader from '@/components/PageHeader';
+import MemberNavigation from '@/components/MemberNavigation';
 
 const MapPage = () => {
-  const router = useRouter();
 
-  const handleSignOut = async () => {
-    await fetch('/api/auth/signout');
-    router.push('/members/login');
-  };
+  // Use next/dynamic to load the map component only on the client side
+  const MemberMap = useMemo(() => dynamic(() => import('@/components/MemberMap'), { 
+    ssr: false,
+    loading: () => <div className="flex items-center justify-center h-full"><p>Loading map...</p></div>
+  }), []);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Church Location
-          </h1>
-          <button
-            onClick={handleSignOut}
-            className="px-4 py-2 font-semibold text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-          >
-            Sign Out
-          </button>
-        </div>
-      </header>
+    <>
       <main>
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <div className="px-4 py-6 sm:px-0">
-            <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-              <div className="px-4 py-5 sm:px-6">
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
-                  Covenant Community Church
-                </h3>
-                <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                  5104 E Stevenson Ave, Chillicothe, IL 61523
-                </p>
-              </div>
-              <div className="border-t border-gray-200" style={{ height: '600px' }}>
-                <iframe
-                  src="https://www.google.com/maps/embed/v1/place?q=5104%20E%20Stevenson%20Ave%2C%20Chillicothe%2C%20IL&key="
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
+        <PageHeader title="Church Location">
+            <MemberNavigation />
+        </PageHeader>
+        <div className="container mx-auto py-12 px-4">
+            <div className="max-w-5xl mx-auto">
+                <div className="mb-4">
+                    <h2 className="text-2xl font-bold font-heading text-navy">Covenant Community Church</h2>
+                    <p className="text-muted-foreground">5104 E Stevenson Ave, Chillicothe, IL 61523</p>
+                </div>
+                <div className="rounded-lg border border-warm overflow-hidden" style={{ height: '65vh' }}>
+                    <MemberMap />
+                </div>
             </div>
-          </div>
         </div>
       </main>
-    </div>
+    </>
   );
 };
 

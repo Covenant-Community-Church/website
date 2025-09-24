@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 // Updated import to use the new Substack library and type
 import { getSubstackPostsViaRSS } from '@/lib/substack';

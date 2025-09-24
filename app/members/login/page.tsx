@@ -3,6 +3,12 @@
 import { useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
+import Header from "@/components/Header";
+import PageHeader from "@/components/PageHeader";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { AlertCircle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 // Function to generate a random string for the state parameter
 const generateState = (length: number) => {
@@ -76,30 +82,40 @@ const Login = () => {
         router.push("/members/login?error=state_mismatch");
       }
     }
-  }, [searchParams, router]);
+  }, [router, searchParams]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-center text-gray-900">
-          Member Login
-        </h1>
-        <p className="text-center text-gray-600">
-          Please sign in with your Planning Center account.
-        </p>
-        <button
-          onClick={handleLogin}
-          className="w-full px-4 py-2 font-bold text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          Sign In with Planning Center
-        </button>
-        {searchParams.has("error") && (
-          <p className="text-sm text-center text-red-600">
-            Login failed. Please try again.
-          </p>
-        )}
-      </div>
-    </div>
+    <>
+      <Header />
+      <main>
+        <PageHeader title="Member Login" />
+        <div className="container mx-auto flex items-center justify-center py-12 px-4">
+          <Card className="w-full max-w-md">
+            <CardHeader className="text-center">
+              <CardTitle>Sign In</CardTitle>
+              <CardDescription>
+                Please sign in with your Planning Center account to access the
+                member area.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {searchParams.has("error") && (
+                <Alert variant="destructive">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertTitle>Login Failed</AlertTitle>
+                  <AlertDescription>
+                    There was a problem logging you in. Please try again.
+                  </AlertDescription>
+                </Alert>
+              )}
+              <Button onClick={handleLogin} className="w-full">
+                Sign In with Planning Center
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </main>
+    </>
   );
 };
 

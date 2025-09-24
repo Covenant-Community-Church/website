@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 
 const ContentSecurityPolicy = `
-  default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline';
+  default-src 'self' https://api.planningcenteronline.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://va.vercel-scripts.com;
   style-src 'self' 'unsafe-inline';
-  img-src 'self' data: img.youtube.com i.ytimg.com substackcdn.com images.unsplash.com;
+  img-src 'self' data: *.tile.openstreetmap.org https://unpkg.com img.youtube.com i.ytimg.com substackcdn.com images.unsplash.com;
   font-src 'self';
   connect-src 'self' https://api.planningcenteronline.com;
   frame-src 'self' https://www.youtube.com;
@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
-      domains: ['img.youtube.com', 'i.ytimg.com', 'substackcdn.com', 'images.unsplash.com'],
+      domains: ['img.youtube.com', 'i.ytimg.com', 'substackcdn.com', 'images.unsplash.com', 'avatars.planningcenteronline.com'],
   }
 };
 

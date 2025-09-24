@@ -215,11 +215,37 @@ export default function Header() {
                                 Contact Us
                             </a>
 
-                            <a href="/sermons"
-                                className="block px-3 py-3 text-base text-brown hover:bg-warm font-body rounded-lg"
-                                onClick={() => setIsMobileMenuOpen(false)}>
-                                Sermons
-                            </a>
+                            {/* Resources Section */}
+                            <div className="border-b border-warm pb-2 mb-2">
+                                <button
+                                    className="w-full text-left px-3 py-3 text-base font-medium text-navy font-body"
+                                    onClick={() => setIsResourcesOpen((v) => !v)}
+                                    aria-haspopup="true"
+                                    aria-expanded={isResourcesOpen}
+                                    aria-controls="about-mobile-menu"
+                                >
+                                    Resources
+                                </button>
+                                {isResourcesOpen && (
+                                    <div id="about-mobile-menu">
+                                        <a href="/sermons"
+                                            className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
+                                            onClick={() => { setIsResourcesOpen(false); setIsResourcesOpen(false); }}>
+                                            Sermons
+                                        </a>
+                                        <a href="/blog"
+                                            className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
+                                            onClick={() => { setIsResourcesOpen(false); setIsResourcesOpen(false); }}>
+                                            Pastor's Blog
+                                        </a>
+                                        <a href="/family-worship"
+                                            className="block px-6 py-3 text-base text-brown hover:bg-warm font-body"
+                                            onClick={() => { setIsResourcesOpen(false); setIsResourcesOpen(false); }}>
+                                            Family Worship Guides
+                                        </a>
+                                    </div>
+                                )}
+                            </div>
 
                             <a href="https://covenantcc.churchcenter.com/giving"
                                 className="block bg-navy hover:bg-navy/90 text-white px-3 py-3 rounded-2xl text-base font-medium font-body mx-3 mt-3 text-center"

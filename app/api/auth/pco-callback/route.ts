@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
     const response = NextResponse.json({ success: true });
     response.cookies.set('pco_session', jwt, {
       httpOnly: true,
-      secure: false, // Explicitly set to false for local development over HTTP
+      secure: process.env.NODE_ENV !== 'development',
       sameSite: 'lax',
       path: '/',
       maxAge: 60 * 60 * 24, // 24 hours

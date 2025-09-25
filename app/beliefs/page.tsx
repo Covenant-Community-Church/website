@@ -6,7 +6,6 @@ export default function Beliefs() {
             {/* Hero Section */}
             <PageHeader
                 title="Our Beliefs"
-                description="We are committed to being thoroughly biblical in all aspects of our faith and life, holding fast to historic Christian doctrine."
             />
 
             {/* Core Theological Positions */}

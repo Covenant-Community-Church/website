@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 // Updated import to use the new Substack library and type
 import { getSubstackPostsViaRSS } from '@/lib/substack';
@@ -7,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircleIcon } from 'lucide-react';
 import { SubstackPost } from '@/types/substack';
-import Image from 'next/image';
 
 // Use the base publication URL as required by the new function
 const PUBLICATION_URL = process.env.SUBSTACK_PUBLICATION_URL;

@@ -1,13 +1,11 @@
+import React from 'react';
+
 interface PageHeaderProps {
     title: string;
-    scripture?: {
-        text: string;
-        reference: string;
-    };
-    description?: string;
+    children?: React.ReactNode;
 }
 
-export default function PageHeader({ title }: PageHeaderProps) {
+export default function PageHeader({ title, children }: PageHeaderProps) {
     return (
         <section className="relative bg-warm border-b border-warm">
             <div
@@ -21,22 +19,11 @@ export default function PageHeader({ title }: PageHeaderProps) {
                             </h1>
                         </div>
 
-                        {/*{(scripture || description) && (*/}
-                        {/*    <div className="lg:max-w-2xl lg:text-right">*/}
-                        {/*        {scripture ? (*/}
-                        {/*            <>*/}
-                        {/*                <p className="text-sm md:text-base text-brown font-body leading-relaxed italic mb-2">*/}
-                        {/*                    &#34;{scripture.text}&#34;*/}
-                        {/*                </p>*/}
-                        {/*                <cite className="block text-navy font-medium text-sm font-body">{scripture.reference}</cite>*/}
-                        {/*            </>*/}
-                        {/*        ) : description && (*/}
-                        {/*            <p className="text-sm md:text-base text-brown font-body leading-relaxed">*/}
-                        {/*                {description}*/}
-                        {/*            </p>*/}
-                        {/*        )}*/}
-                        {/*    </div>*/}
-                        {/*)}*/}
+                        {children && (
+                            <div className="mt-4 lg:mt-0 lg:ml-4">
+                                {children}
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

@@ -3,19 +3,17 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
+import PageHeader from '@/components/PageHeader';
+import MemberNavigation from '@/components/MemberNavigation';
+import { Map, BookOpenCheck, ChevronRight } from 'lucide-react';
 
 // Define a type for the user data for better type safety
 interface UserData {
-  data: {
-    id: string;
-    type: string;
-    attributes: {
-      first_name: string;
-      last_name: string;
-      [key: string]: unknown; // Allow other attributes
-    };
-  };
-  included?: unknown[]; // Define more specific types if needed
+  id: string;
+  name: string;
+  avatar: string;
+  email?: string;
 }
 
 const DashboardPage = () => {
@@ -29,7 +27,6 @@ const DashboardPage = () => {
       try {
         const res = await fetch('/api/user');
         if (res.status === 401) {
-          // Unauthorized, redirect to login
           router.push('/members/login');
           return;
         }
@@ -48,13 +45,12 @@ const DashboardPage = () => {
     fetchUser();
   }, [router]);
 
-  const handleSignOut = async () => {
-    await fetch('/api/auth/signout');
-    router.push('/members/login');
-  };
-
   if (loading) {
-    return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+    return (
+        <div className="flex items-center justify-center min-h-screen">
+            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-navy"></div>
+        </div>
+    );
   }
 
   if (error) {
@@ -62,59 +58,76 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Member Dashboard
-          </h1>
-          <div className="flex items-center space-x-4">
-            <Link href="/members/map" className="text-sm font-medium text-gray-500 hover:text-gray-700">
-                Map
-            </Link>
-            <button
-              onClick={handleSignOut}
-              className="px-4 py-2 font-semibold text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-            >
-              Sign Out
-            </button>
-          </div>
-        </div>
-      </header>
+    <>
       <main>
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <div className="px-4 py-6 sm:px-0">
-            <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-              <div className="px-4 py-5 sm:px-6">
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
-                  Welcome, {user?.data.attributes.first_name}!
-                </h3>
-                <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                  Your Planning Center Profile Details.
-                </p>
-              </div>
-              <div className="border-t border-gray-200">
-                <dl>
-                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">Full name</dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {user?.data.attributes.first_name} {user?.data.attributes.last_name}
-                    </dd>
+        <PageHeader title={`Welcome, ${user?.name}!`}>
+            <MemberNavigation />
+        </PageHeader>
+        <div className="container mx-auto py-12 px-4">
+          <div className="max-w-4xl mx-auto">
+
+            {/* Quick Links Section */}
+            <section>
+              <h2 className="text-xl font-semibold font-heading text-navy mb-4">Quick Links</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Link href="/members/map" className="block group bg-warm/50 hover:bg-warm/80 p-6 rounded-lg transition-colors">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <Map className="h-6 w-6 mr-4 text-navy" />
+                      <span className="text-lg font-bold font-heading text-navy">Church Map</span>
+                    </div>
+                    <ChevronRight className="h-6 w-6 text-gray-400 group-hover:text-navy transition-colors" />
                   </div>
-                  <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt className="text-sm font-medium text-gray-500">PCO ID</dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {user?.data.id}
-                    </dd>
+                </Link>
+                <Link href="/members/sunday-school" className="block group bg-warm/50 hover:bg-warm/80 p-6 rounded-lg transition-colors">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <BookOpenCheck className="h-6 w-6 mr-4 text-navy" />
+                      <span className="text-lg font-bold font-heading text-navy">Sunday School</span>
+                    </div>
+                    <ChevronRight className="h-6 w-6 text-gray-400 group-hover:text-navy transition-colors" />
                   </div>
-                  {/* You can add more fields here as needed */}
-                </dl>
+                </Link>
               </div>
-            </div>
+            </section>
+
+            {/* Profile Information Section */}
+            <section className="mt-12">
+              <h2 className="text-xl font-semibold font-heading text-navy mb-4">Your Profile</h2>
+              <div className="bg-white border border-warm rounded-lg p-6">
+                <div className="flex items-center space-x-6">
+                    <div className="relative w-20 h-20 flex-shrink-0">
+                        <Image 
+                            src={user?.avatar || ''} 
+                            alt={user?.name || ''} 
+                            fill
+                            className="rounded-full object-cover"
+                        />
+                    </div>
+                    <div className="flex-grow">
+                      <dl className="divide-y divide-gray-200">
+                          <div className="py-3 grid grid-cols-3 gap-4">
+                              <dt className="font-medium text-gray-500">Full Name</dt>
+                              <dd className="text-gray-900 col-span-2">{user?.name}</dd>
+                          </div>
+                          <div className="py-3 grid grid-cols-3 gap-4">
+                              <dt className="font-medium text-gray-500">Email</dt>
+                              <dd className="text-gray-900 col-span-2">{user?.email}</dd>
+                          </div>
+                          <div className="py-3 grid grid-cols-3 gap-4">
+                              <dt className="font-medium text-gray-500">Planning Center ID</dt>
+                              <dd className="text-gray-900 col-span-2">{user?.id}</dd>
+                          </div>
+                      </dl>
+                    </div>
+                </div>
+              </div>
+            </section>
+
           </div>
         </div>
       </main>
-    </div>
+    </>
   );
 };
 

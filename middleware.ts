@@ -41,6 +41,11 @@ export async function middleware(request: NextRequest) {
         return response;
     }
 
+    // If the user is authenticated and on the root members page, redirect to dashboard
+    if (pathname === '/members') {
+        return NextResponse.redirect(new URL('/members/dashboard', request.url));
+    }
+
     // If the user is authenticated and tries to access the login page, redirect to the dashboard
     if (pathname === '/members/login') {
       return NextResponse.redirect(new URL('/members/dashboard', request.url));
@@ -51,5 +56,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/members/:path*'],
+  matcher: ['/members', '/members/:path*'],
 };

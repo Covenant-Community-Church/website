@@ -6,7 +6,6 @@ export default function CareGroups() {
         <div className="min-h-screen">
             <PageHeader
                 title="Care Groups"
-                description="Small groups focused on Bible study, prayer, and Christian fellowship"
             />
 
             {/* What We Do */}

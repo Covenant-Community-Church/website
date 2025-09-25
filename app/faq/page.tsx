@@ -6,7 +6,6 @@ export default function FAQ() {
             {/* Hero Section */}
             <PageHeader
                 title="FAQs"
-                description="Common questions about our church, worship, and beliefs"
             />
 
             {/* FAQ Section */}

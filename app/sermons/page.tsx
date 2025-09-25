@@ -275,9 +275,7 @@ export default function Sermons() {
         <div className="min-h-screen">
             {/* Hero Section */}
             <PageHeader
-                title="Sermons"
-                description="Listen to God's Word faithfully preached through verse-by-verse exposition of Scripture."
-            />
+                title="Sermons" />
 
             {/* Recent Sermons */}
             <section className="py-16 bg-white">
@@ -308,7 +306,7 @@ export default function Sermons() {
                                                 className="bg-navy hover:bg-navy/90 text-white p-3 rounded-full transition-colors"
                                             >
                                                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M8 5v14l11-7z"/>
+                                                    <path d="M8 5v14l11-7z" />
                                                 </svg>
                                             </a>
                                         </div>
@@ -325,7 +323,7 @@ export default function Sermons() {
                                         </div>
                                         <div className="mb-3">
                                             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-warm text-brown font-body">
-                                              {sermon.passage}
+                                                {sermon.passage}
                                             </span>
                                         </div>
                                         <p className="text-brown text-sm leading-relaxed font-body">{sermon.description}</p>
@@ -394,7 +392,7 @@ export default function Sermons() {
                                         className="inline-flex items-center w-full justify-center px-4 py-2 bg-navy hover:bg-navy/90 text-white font-medium rounded-2xl transition-colors font-body"
                                     >
                                         <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                                         </svg>
                                         Watch Playlist on YouTube
                                     </a>

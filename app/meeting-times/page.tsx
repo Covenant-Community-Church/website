@@ -7,12 +7,6 @@ export default function MeetingTimes() {
             {/* Hero Section */}
             <PageHeader
                 title="Meeting Times"
-                scripture={{
-                    text: "And let us consider how to stir up one another to love and good works, " +
-                        "not neglecting to meet together, as is the habit of some, but encouraging one another, " +
-                        "and all the more as you see the Day drawing near",
-                    reference: "Hebrews 10:24-25"
-                }}
             />
 
             {/* Main Content */}

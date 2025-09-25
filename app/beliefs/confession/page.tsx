@@ -16,7 +16,6 @@ export default function ConfessionPage() {
             {/* Hero Section */}
             <PageHeader
                 title="Baptist Confession of Faith of 1689"
-                description="The complete text of the Baptist Confession of Faith adopted in 1689, which serves as a foundational document for our church's beliefs."
             />
             {/* Chapter Selection or Content */}
             <section className="py-16 bg-white">

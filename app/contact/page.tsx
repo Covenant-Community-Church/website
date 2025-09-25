@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState } from 'react';
@@ -32,7 +31,6 @@ export default function Contact() {
             {/* Hero Section */}
             <PageHeader
                 title="Contact Us"
-                description="We&#39;d love to hear from you. Whether you have questions about our church, want to visit, or need prayer, don&#39;t hesitate to reach out."
             />
 
             {/* Main Content */}

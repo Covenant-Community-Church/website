@@ -107,10 +107,6 @@ export default function Leadership() {
             {/* Hero Section with Classical Elements */}
             <PageHeader
                 title="Our Leadership"
-                scripture={{
-                    text: "Remember your leaders, those who spoke to you the word of God. Consider the outcome of their way of life, and imitate their faith.",
-                    reference: "Hebrews 13:7"
-                }}
             />
 
             {/* Elders Section */}

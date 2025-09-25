@@ -8,7 +8,6 @@ export default function History() {
             {/* Hero Section */}
             <PageHeader
                 title="Our History"
-                description="The story of God's faithfulness in bringing together two congregations to form Covenant Community Church"
             />
 
             {/* Timeline Section */}

@@ -114,10 +114,6 @@ const DashboardPage = () => {
                               <dt className="font-medium text-gray-500">Email</dt>
                               <dd className="text-gray-900 col-span-2">{user?.email}</dd>
                           </div>
-                          <div className="py-3 grid grid-cols-3 gap-4">
-                              <dt className="font-medium text-gray-500">Planning Center ID</dt>
-                              <dd className="text-gray-900 col-span-2">{user?.id}</dd>
-                          </div>
                       </dl>
                     </div>
                 </div>

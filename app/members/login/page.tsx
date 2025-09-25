@@ -3,7 +3,6 @@
 import { useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
-import Header from "@/components/Header";
 import PageHeader from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -86,7 +85,6 @@ const Login = () => {
 
   return (
     <>
-      <Header />
       <main>
         <PageHeader title="Member Login" />
         <div className="container mx-auto flex items-center justify-center py-12 px-4">

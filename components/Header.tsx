@@ -14,8 +14,8 @@ export default function Header() {
     };
 
     return (
-        <header className="bg-warm shadow-sm border-b border-warm">
-            <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="section-accent shadow-sm border-b border-warm">
+            <nav className="container-max">
                 <div className="flex justify-between items-center h-20">
                     <div className="flex-shrink-0">
                         <Link href="/" className="flex items-center">
@@ -41,7 +41,10 @@ export default function Header() {
                                 />
                             </div>
                             <h1 className="hidden md:block text-3xl font-bold text-navy font-heading">
-                                Covenant Community
+                                COVENANT
+                            </h1>
+                            <h1 className="hidden md:block text-3xl font-regular text-navy font-heading">
+                                &nbsp; Community Church
                             </h1>
 
                         </Link>
@@ -55,7 +58,7 @@ export default function Header() {
                                 onMouseLeave={() => setIsAboutOpen(false)}
                             >
                                 <button
-                                    className="text-brown hover:text-navy px-3 py-2 text-base font-medium font-body"
+                                    className="btn-tertiary"
                                     onClick={() => setIsAboutOpen((v) => !v)}
                                     aria-haspopup="true"
                                     aria-expanded={isAboutOpen}
@@ -104,7 +107,7 @@ export default function Header() {
                                 onMouseLeave={() => setIsResourcesOpen(false)}
                             >
                                 <button
-                                    className="text-brown hover:text-navy px-3 py-2 text-base font-medium font-body"
+                                    className="btn-tertiary"
                                     onClick={() => setIsResourcesOpen((v) => !v)}
                                     aria-haspopup="true"
                                     aria-expanded={isResourcesOpen}
@@ -131,7 +134,7 @@ export default function Header() {
                             </div>
 
                             <a href="https://covenantcc.churchcenter.com/giving"
-                                className="bg-navy hover:bg-navy/90 text-white px-5 py-2 rounded-2xl text-base font-medium font-body">
+                                className="btn-primary">
                                 Give
                             </a>
                         </div>

@@ -13,10 +13,12 @@ const config: Config = {
         warm: '#F6F3EA',
         navy: '#28365D',
         brown: '#362E17',
+        white: '#FFFFFF',
+        black: '#000000',
       },
       fontFamily: {
-        heading: ['var(--font-goldenbook)'],
-        body: ['var(--font-almarai)'],
+        heading: ['var(--font-goldenbook)', 'serif'],
+        body: ['var(--font-almarai)', 'sans-serif'],
       },
       borderRadius: {
         '2xl': '15px',

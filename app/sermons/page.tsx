@@ -262,7 +262,7 @@ export default function Sermons() {
                     <p className="text-brown font-body mb-4">{error}</p>
                     <button
                         onClick={() => window.location.reload()}
-                        className="bg-navy hover:bg-navy/90 text-white px-4 py-2 rounded-2xl font-body"
+                        className="btn-primary"
                     >
                         Try Again
                     </button>
@@ -279,7 +279,7 @@ export default function Sermons() {
 
             {/* Recent Sermons */}
             <section className="py-16 bg-white">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="container-max">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-heading font-bold text-brown mb-4">Recent Sermons</h2>
                         <p className="text-lg text-brown font-body">Our latest messages from Sunday worship</p>
@@ -288,7 +288,7 @@ export default function Sermons() {
                     {recentSermons.length > 0 ? (
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {recentSermons.map((sermon) => (
-                                <div key={sermon.id} className="bg-white border border-warm rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                                <div key={sermon.id} className="card overflow-hidden transition-shadow">
                                     {/* YouTube Thumbnail */}
                                     <div className="relative aspect-video bg-warm">
                                         <Image
@@ -340,8 +340,8 @@ export default function Sermons() {
             </section>
 
             {/* Sermon Series */}
-            <section className="py-16 bg-warm">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="py-16 section-accent">
+                <div className="container-max">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-heading font-bold text-brown mb-4">Sermon Series</h2>
                         <p className="text-lg text-brown mb-8 font-body">
@@ -351,7 +351,7 @@ export default function Sermons() {
 
                     <div className="grid md:grid-cols-2 gap-8">
                         {sermonSeries.map((series) => (
-                            <div key={series.id} className="bg-white rounded-2xl shadow-sm border border-warm overflow-hidden">
+                            <div key={series.id} className="card overflow-hidden">
                                 {/* Series Header */}
                                 <div className="relative aspect-video">
                                     <Image
@@ -389,7 +389,7 @@ export default function Sermons() {
                                         href={`https://www.youtube.com/playlist?list=${series.playlistId}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center w-full justify-center px-4 py-2 bg-navy hover:bg-navy/90 text-white font-medium rounded-2xl transition-colors font-body"
+                                        className="btn-primary w-full justify-center"
                                     >
                                         <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />

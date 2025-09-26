@@ -35,10 +35,11 @@ export default function ConfessionPage() {
                                 {chapterKeys.map((chapterNum) => {
                                     const chapter = chapters[chapterNum as keyof typeof chapters];
                                     return (
-                                        <button
+                                        <div
                                             key={chapterNum}
                                             onClick={() => setSelectedChapter(chapterNum)}
-                                            className="bg-white border border-warm rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-navy transition-all duration-200 text-left group h-full"
+                                            role="button"
+                                            className="card p-6 hover:shadow-lg hover:border-navy transition-all duration-200 text-left group h-full"
                                         >
                                             <div className="flex flex-col h-full">
                                                  <h3 className="text-lg font-heading font-bold text-brown mb-3 group-hover:text-navy transition-colors flex-grow">
@@ -52,7 +53,7 @@ export default function ConfessionPage() {
                                                     {Object.keys(chapter.paragraphs).length} paragraph{Object.keys(chapter.paragraphs).length !== 1 ? 's' : ''}
                                                 </p>
                                             </div>
-                                        </button>
+                                        </div>
                                     );
                                 })}
                             </div>
@@ -64,13 +65,13 @@ export default function ConfessionPage() {
                             <div className="mb-8">
                                 <button
                                     onClick={() => setSelectedChapter(null)}
-                                    className="text-navy hover:text-brown font-body font-medium transition-colors"
+                                    className="btn-tertiary"
                                 >
                                     ← Back to Chapter List
                                 </button>
                             </div>
                             {/* Chapter Content */}
-                            <div className="bg-white border border-warm rounded-2xl p-8 shadow-sm">
+                            <div className="card p-8">
                                 <div className="text-center mb-12">
                                     <span
                                         className="text-sm font-semibold text-navy bg-warm px-3 py-1 rounded-full font-body">
@@ -104,7 +105,7 @@ export default function ConfessionPage() {
             {!selectedChapter && (
                 <section className="py-16 bg-warm">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="bg-white border border-warm rounded-2xl p-8 shadow-sm">
+                        <div className="card p-8">
                             <h3 className="text-2xl font-heading font-bold text-brown mb-4">
                                 About This Confession
                             </h3>

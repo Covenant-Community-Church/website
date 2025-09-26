@@ -11,10 +11,10 @@ export default function MeetingTimes() {
 
             {/* Main Content */}
             <section className="py-16 bg-white">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="container-max">
 
                     {/* Location Banner */}
-                    <div className="bg-warm rounded-2xl p-6 mb-16 text-center">
+                    <div className="section-accent rounded-2xl p-6 mb-16 text-center">
                         <p className="text-lg text-brown mb-2 font-body">
                             We meet every Sunday at <strong>5104 E Stevenson Ave in Chillicothe, IL</strong>
                         </p>

@@ -87,7 +87,7 @@ const Login = () => {
     <>
       <main>
         <PageHeader title="Member Login" />
-        <div className="container mx-auto flex items-center justify-center py-12 px-4">
+        <div className="container-max flex items-center justify-center py-12">
           <Card className="w-full max-w-md">
             <CardHeader className="text-center">
               <CardTitle>Sign In</CardTitle>

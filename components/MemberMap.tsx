@@ -17,7 +17,7 @@ const customIcon = new L.Icon({
 
 const MemberMap = () => {
   // Coordinates for 5104 E Stevenson Ave, Chillicothe, IL
-  const position: [number, number] = [40.885, -89.485];
+  const position: [number, number] = [40.871878599999995,-89.5115685];
 
   return (
     <MapContainer center={position} zoom={15} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>

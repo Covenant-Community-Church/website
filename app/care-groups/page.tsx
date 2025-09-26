@@ -10,7 +10,7 @@ export default function CareGroups() {
 
             {/* What We Do */}
             <section className="py-16 bg-white">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="container-max">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-heading font-bold text-brown mb-6">
                             Bible Study • Prayer • Fellowship
@@ -29,11 +29,10 @@ export default function CareGroups() {
 
                     {/* Meeting Info */}
                     <div className="grid md:grid-cols-2 gap-8">
-                        <div className="bg-white border border-warm rounded-2xl p-6 shadow-sm text-center">
-                            <h3 className="text-xl font-heading font-bold text-brown mb-4">When</h3>
+                        <div className="card p-6 text-center">
                             <p className="text-brown font-body">Bi-weekly meetings with flexible scheduling</p>
                         </div>
-                        <div className="bg-white border border-warm rounded-2xl p-6 shadow-sm text-center">
+                        <div className="card p-6 text-center">
                             <h3 className="text-xl font-heading font-bold text-brown mb-4">Where</h3>
                             <p className="text-brown font-body">Homes and church building</p>
                         </div>
@@ -42,8 +41,8 @@ export default function CareGroups() {
             </section>
 
             {/* Contact */}
-            <section className="py-16 bg-warm">
-                <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <section className="py-16 section-accent">
+                <div className="container-max text-center">
                     <h2 className="text-2xl font-heading font-bold text-brown mb-6">
                         Join a Care Group
                     </h2>
@@ -52,7 +51,7 @@ export default function CareGroups() {
                     </p>
                     <a
                         href="mailto:caregroups@covenantcommunity.org"
-                        className="inline-flex items-center px-6 py-3 bg-navy hover:bg-navy/90 text-white font-medium rounded-2xl transition-colors font-body"
+                        className="btn-primary"
                     >
                         Contact Us
                     </a>

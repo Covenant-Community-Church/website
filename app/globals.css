@@ -36,7 +36,6 @@ body {
 /* Heading Styles */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-goldenbook);
-  font-weight: 700;
 }
 
 /* Body Text */
@@ -193,7 +192,7 @@ p, div, span, a, li {
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
   --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oclch(0.984 0.003 247.858);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
   --sidebar-accent: oklch(0.279 0.041 260.031);
@@ -207,6 +206,28 @@ p, div, span, a, li {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-brown;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl shadow-md border border-gray-200;
+  }
+
+  .section-accent {
+    @apply bg-warm;
+  }
+
+  .icon-container {
+    @apply bg-warm rounded-full flex items-center justify-center;
+  }
+
+  .icon-container svg {
+    @apply text-navy;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }

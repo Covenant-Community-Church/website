@@ -35,7 +35,7 @@ export default function Contact() {
 
             {/* Main Content */}
             <section className="py-16 bg-white">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="container-max">
                     <div className="grid lg:grid-cols-2 gap-12">
 
                         {/* Contact Information */}
@@ -46,7 +46,7 @@ export default function Contact() {
                             <div className="mb-8">
                                 <div className="flex items-start">
                                     <div className="flex-shrink-0">
-                                        <div className="w-12 h-12 bg-warm rounded-lg flex items-center justify-center">
+                                        <div className="icon-container w-12 h-12">
                                             <svg className="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                             </svg>
@@ -56,7 +56,7 @@ export default function Contact() {
                                         <h3 className="text-lg font-heading font-semibold text-brown mb-2">Email</h3>
                                         <a
                                             href="mailto:office@covenantcommunity.org"
-                                            className="text-navy hover:text-brown text-lg font-medium underline font-body"
+                                            className="btn-tertiary text-lg"
                                         >
                                             office@covenantcommunity.org
                                         </a>
@@ -68,7 +68,7 @@ export default function Contact() {
                             <div className="mb-8">
                                 <div className="flex items-start">
                                     <div className="flex-shrink-0">
-                                        <div className="w-12 h-12 bg-warm rounded-lg flex items-center justify-center">
+                                        <div className="icon-container w-12 h-12">
                                             <svg className="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -86,7 +86,7 @@ export default function Contact() {
                             </div>
 
                             {/* Service Times Quick Reference */}
-                            <div className="bg-warm rounded-lg p-6 mb-8">
+                            <div className="section-accent rounded-lg p-6 mb-8">
                                 <h3 className="text-lg font-heading font-semibold text-brown mb-4 flex items-center">
                                     <svg className="w-5 h-5 text-navy mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -114,26 +114,23 @@ export default function Contact() {
                                 <h3 className="text-lg font-heading font-semibold text-brown mb-4">Quick Links</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     <a
-                                        href="/meeting-times"
-                                        className="text-navy hover:text-brown underline font-body"
+                                        className="btn-tertiary"
                                     >
                                         Service Times
                                     </a>
                                     <a
-                                        href="/beliefs"
-                                        className="text-navy hover:text-brown underline font-body"
+                                        className="btn-tertiary"
                                     >
                                         Our Beliefs
                                     </a>
                                     <a
-                                        href="/care-groups"
-                                        className="text-navy hover:text-brown underline font-body"
+                                        className="btn-tertiary"
                                     >
                                         Care Groups
                                     </a>
                                     <a
                                         href="/faq"
-                                        className="text-navy hover:text-brown underline font-body"
+                                        className="btn-tertiary"
                                     >
                                         FAQs
                                     </a>
@@ -246,7 +243,7 @@ export default function Contact() {
                             </form>
 
                             {/* Contact Note */}
-                            <div className="mt-6 p-4 bg-warm rounded-lg">
+                            <div className="mt-6 p-4 section-accent rounded-lg">
                                 <p className="text-sm text-brown font-body">
                                     <strong>Note:</strong> We typically respond to messages within 24-48 hours.
                                     For urgent matters, please email us directly at{' '}

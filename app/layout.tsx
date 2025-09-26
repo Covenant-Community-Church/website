@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Libre_Baskerville, Almarai } from "next/font/google";
+import { Almarai } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import React from "react";
@@ -7,14 +7,8 @@ import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import localFont from 'next/font/local'
 
-const libreBaskerville = Libre_Baskerville({
-    subsets: ["latin"],
-    weight: ["400", "700"],
-    variable: "--font-libre-baskerville",
-});
-
 const almarai = Almarai({
-    subsets: ["arabic"],
+    subsets: ["latin", "arabic"],
     weight: ["300", "400", "700"],
     variable: "--font-almarai",
 });
@@ -52,7 +46,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${libreBaskerville.variable} ${almarai.variable} ${goldenbook.variable} font-body antialiased min-h-screen flex flex-col`}>
+            <body className={`${almarai.variable} ${goldenbook.variable} font-body antialiased min-h-screen flex flex-col`}>
 
                 <Header />
 

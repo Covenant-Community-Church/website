@@ -63,14 +63,14 @@ const DashboardPage = () => {
         <PageHeader title={`Welcome, ${user?.name}!`}>
             <MemberNavigation />
         </PageHeader>
-        <div className="container mx-auto py-12 px-4">
-          <div className="max-w-4xl mx-auto">
+        <div className="container-max py-12">
+          <div>
 
             {/* Quick Links Section */}
             <section>
               <h2 className="text-xl font-semibold font-heading text-navy mb-4">Quick Links</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link href="/members/map" className="block group bg-warm/50 hover:bg-warm/80 p-6 rounded-lg transition-colors">
+                <Link href="/members/map" className="block group card section-accent p-6 transition-colors">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
                       <Map className="h-6 w-6 mr-4 text-navy" />
@@ -79,7 +79,7 @@ const DashboardPage = () => {
                     <ChevronRight className="h-6 w-6 text-gray-400 group-hover:text-navy transition-colors" />
                   </div>
                 </Link>
-                <Link href="/members/sunday-school" className="block group bg-warm/50 hover:bg-warm/80 p-6 rounded-lg transition-colors">
+                <Link href="/members/sunday-school" className="block group card section-accent p-6 transition-colors">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
                       <BookOpenCheck className="h-6 w-6 mr-4 text-navy" />
@@ -94,7 +94,7 @@ const DashboardPage = () => {
             {/* Profile Information Section */}
             <section className="mt-12">
               <h2 className="text-xl font-semibold font-heading text-navy mb-4">Your Profile</h2>
-              <div className="bg-white border border-warm rounded-lg p-6">
+              <div className="card p-6">
                 <div className="flex items-center space-x-6">
                     <div className="relative w-20 h-20 flex-shrink-0">
                         <Image 
@@ -107,12 +107,12 @@ const DashboardPage = () => {
                     <div className="flex-grow">
                       <dl className="divide-y divide-gray-200">
                           <div className="py-3 grid grid-cols-3 gap-4">
-                              <dt className="font-medium text-gray-500">Full Name</dt>
-                              <dd className="text-gray-900 col-span-2">{user?.name}</dd>
+                              <dt className="font-medium text-brown">Full Name</dt>
+                              <dd className="text-brown col-span-2">{user?.name}</dd>
                           </div>
                           <div className="py-3 grid grid-cols-3 gap-4">
-                              <dt className="font-medium text-gray-500">Email</dt>
-                              <dd className="text-gray-900 col-span-2">{user?.email}</dd>
+                              <dt className="font-medium text-brown">Email</dt>
+                              <dd className="text-brown col-span-2">{user?.email}</dd>
                           </div>
                       </dl>
                     </div>

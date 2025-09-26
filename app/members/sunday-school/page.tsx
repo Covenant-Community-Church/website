@@ -11,8 +11,8 @@ const SundaySchoolPage = () => {
         <PageHeader title="Sunday School">
           <MemberNavigation />
         </PageHeader>
-        <div className="container mx-auto py-12 px-4">
-          <Card className="max-w-4xl mx-auto">
+        <div className="container-max py-12">
+          <Card>
             <CardHeader>
               <CardTitle>Coming Soon</CardTitle>
             </CardHeader>

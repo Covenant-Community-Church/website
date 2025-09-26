@@ -8,9 +8,9 @@ interface MeetingCardProps {
 
 export default function MeetingCard({ icon, title, day, time, description }: MeetingCardProps) {
     return (
-        <div className="bg-white border border-warm rounded-2xl p-6 shadow-sm">
+        <div className="card p-6">
             <div className="text-center mb-6">
-                <div className="w-12 h-12 bg-warm rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="icon-container w-12 h-12 mx-auto mb-4">
                     {icon}
                 </div>
                 <h3 className="text-xl font-heading font-bold text-brown mb-2">{title}</h3>

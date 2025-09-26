@@ -1,4 +1,6 @@
 import PageHeader from "@/components/PageHeader";
+import FeatureCard from "@/components/FeatureCard";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function Beliefs() {
     return (
@@ -14,49 +16,40 @@ export default function Beliefs() {
                     <div className="grid md:grid-cols-3 gap-8">
 
                         {/* Protestant & Evangelical */}
-                        <div className="bg-white border border-warm rounded-2xl p-8 shadow-sm">
-                            <div className="text-center mb-6">
-                                <div className="w-16 h-16 bg-warm rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                    </svg>
-                                </div>
-                                <h3 className="text-xl font-heading font-bold text-brown mb-4">Protestant & Evangelical</h3>
-                            </div>
-                            <p className="text-brown leading-relaxed text-sm font-body">
+                        <FeatureCard
+                            icon={<svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>}
+                            title="Protestant & Evangelical"
+                        >
+                            <p className="text-sm">
                                 We are committed to being thoroughly biblical in all aspects of our faith and life. This commitment shapes our theology, where we hold fast to the historic doctrines of the faith that were once for all delivered to the saints (Jude 3). It governs our worship, which we conduct according to the Regulative Principle of Scripture, and it directs our church practice, centering our life together on the faithful administration of the Ordinary Means of Grace.
                             </p>
-                        </div>
+                        </FeatureCard>
 
                         {/* Baptistic */}
-                        <div className="bg-white border border-warm rounded-2xl p-8 shadow-sm">
-                            <div className="text-center mb-6">
-                                <div className="w-16 h-16 bg-warm rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
-                                <h3 className="text-xl font-heading font-bold text-brown mb-4">Baptistic</h3>
-                            </div>
-                            <p className="text-brown leading-relaxed text-sm font-body">
+                        <FeatureCard
+                            icon={<svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>}
+                            title="Baptistic"
+                        >
+                            <p className="text-sm">
                                 As Baptists, we hold to particular biblical convictions regarding ecclesiology—the doctrine of the church. These convictions define our practice of church membership, which we believe is reserved only for those who make a credible profession of faith and have been baptized as believers. They likewise determine our understanding of church authority, as we affirm that the local church is autonomous under the headship of Christ, entrusted with the keys of the kingdom to be exercised in its government and discipline.
                             </p>
-                        </div>
+                        </FeatureCard>
 
                         {/* Christ-Centered */}
-                        <div className="bg-white border border-warm rounded-2xl p-8 shadow-sm">
-                            <div className="text-center mb-6">
-                                <div className="w-16 h-16 bg-warm rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                                    </svg>
-                                </div>
-                                <h3 className="text-xl font-heading font-bold text-brown mb-4">Christ-Centered</h3>
-                            </div>
-                            <p className="text-brown leading-relaxed text-sm font-body">
+                        <FeatureCard
+                            icon={<svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                            </svg>}
+                            title="Christ-Centered"
+                        >
+                            <p className="text-sm">
                                 We are fundamentally Christ-centered, aiming to make the glory of God in the gospel of Jesus Christ the focus of everything we do. This commitment defines our understanding of Scripture, where we affirm Christ as its overarching theme and ultimate goal. It governs our worship, making Him the central and supreme focus. Finally, it fuels our practice, with the gospel serving as the motivation for every aspect of our faith and life.
                             </p>
-                        </div>
+                        </FeatureCard>
                     </div>
                 </div>
             </section>
@@ -64,18 +57,12 @@ export default function Beliefs() {
             {/* Governing Documents */}
             <section className="py-16 bg-warm">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-heading font-bold text-brown mb-4">
-                            Our Governing Documents
-                        </h2>
-                        <p className="text-lg text-brown font-body">
-                            These documents guide our beliefs and practices as a church community
-                        </p>
-                    </div>
+                    <SectionHeader title="Our Governing Documents">
+                        These documents guide our beliefs and practices as a church community
+                    </SectionHeader>
 
                     <div className="grid md:grid-cols-2 gap-8">
-                        {/* Confession of Faith */}
-                        <div className="bg-white rounded-2xl p-8 shadow-sm border border-warm">
+                        <div className="card p-8">
                             <div className="mb-6">
                                 <div className="w-20 h-20 bg-warm rounded-full flex items-center justify-center mx-auto mb-6">
                                     <svg className="w-10 h-10 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,7 +82,7 @@ export default function Beliefs() {
                         </div>
 
                         {/* Church Constitution */}
-                        <div className="bg-white rounded-2xl p-8 shadow-sm border border-warm">
+                        <div className="card p-8">
                             <div className="mb-6">
                                 <div className="w-20 h-20 bg-warm rounded-full flex items-center justify-center mx-auto mb-6">
                                     <svg className="w-10 h-10 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">

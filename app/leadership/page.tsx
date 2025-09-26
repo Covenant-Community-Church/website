@@ -111,7 +111,7 @@ export default function Leadership() {
 
             {/* Elders Section */}
             <section className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="container-max">
                     {/* Section Header */}
                     <div className="text-center mb-16">
                         <h2 className="text-4xl font-heading font-bold text-brown mb-6">Elders</h2>
@@ -127,7 +127,7 @@ export default function Leadership() {
                         {elders.map((elder) => (
                             <div key={elder.id} className="group relative">
                                 {/* Profile Card */}
-                                <div className="bg-white border-2 border-warm rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group-hover:border-navy">
+                                <div className="card overflow-hidden transition-all duration-300 group-hover:border-navy">
                                     {/* Image Container */}
                                     <div className="relative aspect-[4/5] overflow-hidden">
                                         <Image
@@ -166,8 +166,7 @@ export default function Leadership() {
                                         {/* Conditional Biography Button */}
                                         {elder.bio && elder.bio.trim() !== "" && (
                                             <button
-                                                onClick={() => setSelectedPerson(elder)}
-                                                className="inline-flex items-center text-navy hover:text-brown font-body font-medium transition-colors group"
+                                                className="btn-tertiary group"
                                             >
                                                 Read Biography
                                                 <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
@@ -182,8 +181,8 @@ export default function Leadership() {
             </section>
 
             {/* Deacons Section */}
-            <section className="py-20 bg-warm">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="py-20 section-accent">
+                <div className="container-max">
                     {/* Section Header */}
                     <div className="text-center mb-16">
                         <h2 className="text-4xl font-heading font-bold text-brown mb-6">Deacons</h2>
@@ -198,7 +197,7 @@ export default function Leadership() {
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {deacons.map((deacon) => (
                             <div key={deacon.id} className="group">
-                                <div className="bg-white border-2 border-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group-hover:border-navy">
+                                <div className="card overflow-hidden transition-all duration-300 group-hover:border-navy">
                                     {/* Image Container */}
                                     <div className="relative aspect-[4/5] overflow-hidden">
                                         <Image
@@ -235,7 +234,7 @@ export default function Leadership() {
                                         {deacon.bio && deacon.bio.trim() !== "" && (
                                             <button
                                                 onClick={() => setSelectedPerson(deacon)}
-                                                className="inline-flex items-center text-navy hover:text-brown font-body font-medium transition-colors group"
+                                                className="btn-tertiary group"
                                             >
                                                 Read Biography
                                                 <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
@@ -252,7 +251,7 @@ export default function Leadership() {
             {/* Biography Modal */}
             {selectedPerson && (
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-                    <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                    <div className="card max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                         <div className="sticky top-0 bg-white border-b border-warm px-6 py-4 flex justify-between items-center rounded-t-2xl">
                             <div>
                                 <h3 className="text-2xl font-heading font-bold text-brown">

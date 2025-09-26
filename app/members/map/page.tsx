@@ -19,11 +19,11 @@ const MapPage = () => {
         <PageHeader title="Church Location">
             <MemberNavigation />
         </PageHeader>
-        <div className="container mx-auto py-12 px-4">
-            <div className="max-w-5xl mx-auto">
+        <div className="container-max py-12">
+            <div>
                 <div className="mb-4">
                     <h2 className="text-2xl font-bold font-heading text-navy">Covenant Community Church</h2>
-                    <p className="text-muted-foreground">5104 E Stevenson Ave, Chillicothe, IL 61523</p>
+                    <p className="text-brown">5104 E Stevenson Ave, Chillicothe, IL 61523</p>
                 </div>
                 <div className="rounded-lg border border-warm overflow-hidden" style={{ height: '65vh' }}>
                     <MemberMap />

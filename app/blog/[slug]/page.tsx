@@ -78,7 +78,7 @@ export default async function PostPage({ params }: Props) {
           className="object-cover"
         />
       </div>
-      <main className="container mx-auto py-12 px-4">
+      <main className="container-max py-12">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
           <div className="lg:col-span-3">
             <article
@@ -90,7 +90,7 @@ export default async function PostPage({ params }: Props) {
             <div className="sticky top-24 space-y-6">
               <div>
                 <h3 className="font-semibold text-lg mb-2">Published on</h3>
-                <p className="text-gray-600">{formatDate(post.date)}</p>
+                <p className="text-brown">{formatDate(post.date)}</p>
               </div>
               <Separator />
               <div className="space-y-3">
